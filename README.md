@@ -3,7 +3,7 @@ FlightGear real time flight controls/instruments/parameters and descent ramp gra
 
 ## Description
 
-This is an application made in Delphi to be executed together with FlightGear, in order to show the pilot the flight parameters, without having to check them directly in FlightGear.
+This is an application made in Delphi to be executed together with FlightGear, in order to show the flight parameters, without having to check them directly in FlightGear.
 
 I developed this program because, several times using the simulator, I came across the difficulty of knowing the current status of a certain parameter during a flight.
 
