@@ -1,0 +1,1 @@
+--generic=socket,out,20,localhost,6688,udp,digao_panel
