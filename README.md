@@ -7,7 +7,7 @@ This is an application made in Delphi to be executed together with FlightGear, i
 
 I developed this program because, several times using the simulator, I came across the difficulty of knowing the current status of a certain parameter during a flight.
 
-You are landing the plane, and at this moment you need to make several parameters, but you don't have a copilot to help you because you are just using the simulator, and you want to keep the screen with the view from the warning window, to see the runway.
+You are landing the plane, and at this moment you need to make several parameters, but you don't have a copilot to help you because you are just using the simulator, and you want to keep the screen with the view from the window, to see the runway.
 
 So, let's say you want to lower the flaps. In the simulator, you can use the keyboard or the joystick for this, but you will not get feedback that it was actually performed on the aircraft.
 
