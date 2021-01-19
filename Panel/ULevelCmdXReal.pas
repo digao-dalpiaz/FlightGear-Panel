@@ -2,14 +2,13 @@ unit ULevelCmdXReal;
 
 interface
 
-uses Vcl.Controls, Vcl.StdCtrls, Vcl.ExtCtrls, System.Classes;
+uses Vcl.Controls, Vcl.ExtCtrls, System.Classes,
+  ULevel;
 
 type
   TLevelCmdXReal = class(TWinControl)
   private
-    ShCmd, ShReal: TShape;
-    PnLevels, PnLabels: TPanel;
-    LbCmd, LbReal: TLabel;
+    ShCmd, ShReal: TLevel;
   protected
     procedure Resize; override;
   public
@@ -21,8 +20,6 @@ procedure CreateLevel(var Level: TLevelCmdXReal; Panel: TPanel);
 
 implementation
 
-uses System.SysUtils, Vcl.Graphics, System.UITypes;
-
 procedure CreateLevel(var Level: TLevelCmdXReal; Panel: TPanel);
 begin
   Level := TLevelCmdXReal.Create(Panel.Owner);
@@ -33,73 +30,25 @@ end;
 constructor TLevelCmdXReal.Create(AOwner: TComponent);
 begin
   inherited;
-  PnLevels := TPanel.Create(Self);
-  PnLevels.Parent := Self;
-  PnLevels.BevelOuter := bvNone;
-  PnLevels.ParentBackground := False;
-  PnLevels.Color := $00525252;
-  PnLevels.Align := alClient;
+  ShCmd := TLevel.Create(Self, $000080FF, False);
+  ShCmd.Parent := Self;
+  ShCmd.Align := alTop;
 
-  PnLabels := TPanel.Create(Self);
-  PnLabels.Parent := Self;
-  PnLabels.BevelOuter := bvNone;
-  PnLabels.ParentBackground := False;
-  PnLabels.Color := $00191919;
-  PnLabels.Align := alRight;
-  PnLabels.Width := 40;
-
-  LbCmd := TLabel.Create(Self);
-  LbCmd.Parent := PnLabels;
-  LbCmd.AutoSize := False;
-  LbCmd.Width := PnLabels.Width;
-  LbCmd.Height := 15;
-  LbCmd.Alignment := taCenter;
-
-  LbReal := TLabel.Create(Self);
-  LbReal.Parent := PnLabels;
-  LbReal.AutoSize := False;
-  LbReal.Width := PnLabels.Width;
-  LbReal.Height := 15;
-  LbReal.Alignment := taCenter;
-
-  ShCmd := TShape.Create(Self);
-  ShCmd.Parent := PnLevels;
-  ShCmd.Brush.Color := $000080FF;
-  ShCmd.Pen.Color := ShCmd.Brush.Color;
-
-  ShReal := TShape.Create(Self);
-  ShReal.Parent := PnLevels;
-  ShReal.Brush.Color := $00804000;
-  ShReal.Pen.Color := ShReal.Brush.Color;
+  ShReal := TLevel.Create(Self, $00804000, False);
+  ShReal.Parent := Self;
+  ShReal.Align := alClient;
 end;
 
 procedure TLevelCmdXReal.Resize;
-var
-  Middle: Integer;
 begin
   inherited;
-
-  Middle := Round(Height * 0.4);
-
-  ShCmd.Left := 0;
-  ShCmd.Top := 0;
-  ShCmd.Height := Middle;
-
-  ShReal.Left := 0;
-  ShReal.Top := Middle;
-  ShReal.Height := Height - ShReal.Top;
-
-  LbCmd.Top := ShCmd.Top + ((ShCmd.Height-LbCmd.Height) div 2);
-  LbReal.Top := ShReal.Top + ((ShReal.Height-LbReal.Height) div 2);
+  ShCmd.Height := Round(Height * 0.4);
 end;
 
 procedure TLevelCmdXReal.UpdateValue(Cmd, Real: Extended);
 begin
-  ShCmd.Width := Round(PnLevels.Width * Cmd);
-  ShReal.Width := Round(PnLevels.Width * Real);
-
-  LbCmd.Caption := FormatFloat('0.00', Cmd);
-  LbReal.Caption := FormatFloat('0.00', Real);
+  ShCmd.Value := Cmd;
+  ShReal.Value := Real;
 end;
 
 end.

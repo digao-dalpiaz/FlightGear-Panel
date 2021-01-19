@@ -5,7 +5,7 @@ interface
 uses Vcl.Forms, IdUDPServer, IdGlobal, IdSocketHandle, System.Classes,
   IdBaseComponent, IdComponent, IdUDPBase,
   //
-  UPropertyList, UFrameEngine, ULevelCmdXReal, UDescentRamp,
+  UPropertyList, UFrameEngine, ULevel, ULevelCmdXReal, UDescentRamp,
   System.Generics.Collections, Vcl.ExtCtrls, Vcl.Controls, Vcl.StdCtrls;
 
 type
@@ -15,7 +15,6 @@ type
     LbAirSpeed: TLabel;
     Label2: TLabel;
     LbGroundSpeed: TLabel;
-    LTanks: TListBox;
     Label3: TLabel;
     LbTotalFuel: TLabel;
     Label7: TLabel;
@@ -48,11 +47,7 @@ type
     BoxEngines: TPanel;
     BoxBrakes: TPanel;
     Label18: TLabel;
-    ShBrakeL: TShape;
-    ShBrakeR: TShape;
     BoxSpoilersSide: TPanel;
-    ShSpoilerL: TShape;
-    ShSpoilerR: TShape;
     Label12: TLabel;
     Label6: TLabel;
     BoxDescentRamp: TPanel;
@@ -69,18 +64,23 @@ type
     Label16: TLabel;
     LbClosestAirport: TLabel;
     LbGroundSpoilersArmed: TLabel;
+    BoxTanks: TPanel;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread; const AData: TIdBytes;
       ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
     FramesEngines: TList<TFrameEngine>;
+    LevelsTanks: TList<TLevel>;
 
     LevelFlaps, LevelSpoilers, LevelSpeedBrake, LevelGear: TLevelCmdXReal;
+    LevelSpoilerL, LevelSpoilerR, LevelBrakeL, LevelBrakeR: TLevel;
     DescentRamp: TDescentRamp;
 
     procedure CreateEngines;
     procedure UpdatePanel(L: TPropertyList);
+    procedure CreateHorizontalLevels;
+    procedure CreateTanks;
   end;
 
 var
@@ -129,13 +129,61 @@ begin
   CreateLevel(LevelSpeedBrake, BoxSpeedBrake);
   CreateLevel(LevelGear, BoxGear);
 
+  CreateHorizontalLevels;
+
   FramesEngines := TList<TFrameEngine>.Create;
   CreateEngines;
+
+  LevelsTanks := TList<TLevel>.Create;
+  CreateTanks;
 end;
 
 procedure TFrmMain.FormDestroy(Sender: TObject);
 begin
   FramesEngines.Free;
+  LevelsTanks.Free;
+end;
+
+procedure TFrmMain.CreateHorizontalLevels;
+begin
+  LevelSpoilerL := TLevel.Create(Self, clRed, True);
+  LevelSpoilerL.Parent := BoxSpoilersSide;
+  LevelSpoilerL.Align := alLeft;
+  LevelSpoilerL.Width := BoxSpoilersSide.Width div 2;
+
+  LevelSpoilerR := TLevel.Create(Self, clRed, True);
+  LevelSpoilerR.Parent := BoxSpoilersSide;
+  LevelSpoilerR.Align := alClient;
+
+  LevelBrakeL := TLevel.Create(Self, clRed, True);
+  LevelBrakeL.Parent := BoxBrakes;
+  LevelBrakeL.Align := alLeft;
+  LevelBrakeL.Width := BoxBrakes.Width div 2;
+
+  LevelBrakeR := TLevel.Create(Self, clRed, True);
+  LevelBrakeR.Parent := BoxBrakes;
+  LevelBrakeR.Align := alClient;
+end;
+
+procedure TFrmMain.CreateTanks;
+var
+  I, Y: Integer;
+  Level: TLevel;
+begin
+  Y := 0;
+
+  for I := 1 to 5 do
+  begin
+    Level := TLevel.Create(Self, $00B94462, False);
+    Level.Parent := BoxTanks;
+    Level.Height := 18;
+    Level.Top := Y;
+    Level.Align := alTop;
+
+    LevelsTanks.Add(Level);
+
+    Y := Level.Top+Level.Height;
+  end;
 end;
 
 procedure TFrmMain.CreateEngines;
@@ -182,10 +230,10 @@ end;
 
 procedure TFrmMain.UpdatePanel(L: TPropertyList);
 var
-  Tank: TPL_Tank;
   FrameEngine: TFrameEngine;
+  I: Integer;
 begin
-  LTanks.Items.BeginUpdate;
+  {LTanks.Items.BeginUpdate;
   try
     LTanks.Items.Clear;
     for Tank in L.Tanks do
@@ -195,7 +243,7 @@ begin
     end;
   finally
     LTanks.Items.EndUpdate;
-  end;
+  end;}
 
   SetLabelFloat(LbTotalFuel, L.Total_Fuel_Kg, True, L.Total_Fuel_Kg>1000, ' kg');
 
@@ -259,18 +307,18 @@ begin
   SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, False, True);
   SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, False, True);
   SetLabelFloat(LbMach, L.Mach, False, True);
-  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, False, True);
+  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, True, True, ' ft');
 
   LevelFlaps.UpdateValue(L.Controls.Flaps, L.Flap_Pos_Norm);
   LevelSpoilers.UpdateValue(L.Controls.Spoilers, L.Spoilers_Pos_Norm);
   LevelSpeedBrake.UpdateValue(L.Controls.SpeedBrake, L.SpeedBrake_Pos_Norm);
   LevelGear.UpdateValue(IfThen(L.Controls.Gear_Down, 1, 0), L.Gears.First.Position_Norm);
 
-  ShSpoilerL.Height := Round(BoxSpoilersSide.Height * L.Controls.Spoiler_L_Sum);
-  ShSpoilerR.Height := Round(BoxSpoilersSide.Height * L.Controls.Spoiler_R_Sum);
+  LevelSpoilerL.Value := L.Controls.Spoiler_L_Sum;
+  LevelSpoilerR.Value := L.Controls.Spoiler_R_Sum;
 
-  ShBrakeL.Height := Round(BoxBrakes.Height * L.Controls.Brake_Left);
-  ShBrakeR.Height := Round(BoxBrakes.Height * L.Controls.Brake_Right);
+  LevelBrakeL.Value := L.Controls.Brake_Left;
+  LevelBrakeR.Value := L.Controls.Brake_Right;
 
   LbDestination.Caption := L.RouteManager.Destination_Airport+'-'+
     L.RouteManager.Destination_Name + ' ['+L.RouteManager.Destination_Runway+']';
@@ -285,6 +333,20 @@ begin
 
   for FrameEngine in FramesEngines do
     FrameEngine.UpdateByEngineIndex(L);
+
+  for I := 0 to LevelsTanks.Count-1 do
+  begin
+    if L.Tanks[I].Hidden then
+    begin
+      LevelsTanks[I].Description := string.Empty;
+      LevelsTanks[I].Value := 0;
+    end else
+    begin
+      LevelsTanks[I].Description := L.Tanks[I].Name;
+      LevelsTanks[I].Value := L.Tanks[I].Level_Norm;
+    end;
+  end;
+
 end;
 
 end.

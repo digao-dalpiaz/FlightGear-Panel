@@ -1,6 +1,8 @@
 # FlightGear-Panel
 FlightGear real time flight controls/instruments/parameters and descent ramp graph
 
+![Preview](Images/panel_preview.png)
+
 ## Description
 
 This is an application made in Delphi to be executed together with FlightGear, in order to show the flight parameters, without having to check them directly in FlightGear.

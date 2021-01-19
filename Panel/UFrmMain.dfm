@@ -2,7 +2,7 @@ object FrmMain: TFrmMain
   Left = 0
   Top = 0
   Caption = 'FlightGear Panel'
-  ClientHeight = 656
+  ClientHeight = 610
   ClientWidth = 553
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -528,31 +528,15 @@ object FrmMain: TFrmMain
     Height = 13
     Caption = 'Ground Spoilers Armed'
   end
-  object LTanks: TListBox
-    Left = 8
-    Top = 296
-    Width = 193
-    Height = 105
-    BorderStyle = bsNone
-    Color = 1513239
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clYellow
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ItemHeight = 19
-    ParentFont = False
-    TabOrder = 0
-  end
   object BoxFlaps: TPanel
     Left = 8
     Top = 232
     Width = 193
     Height = 41
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 1
+    TabOrder = 0
   end
   object BoxSpoilers: TPanel
     Left = 208
@@ -560,9 +544,9 @@ object FrmMain: TFrmMain
     Width = 113
     Height = 41
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 1
   end
   object BoxSpeedBrake: TPanel
     Left = 328
@@ -570,9 +554,9 @@ object FrmMain: TFrmMain
     Width = 113
     Height = 41
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 2
   end
   object BoxGear: TPanel
     Left = 448
@@ -580,19 +564,19 @@ object FrmMain: TFrmMain
     Width = 97
     Height = 41
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 4
+    TabOrder = 3
   end
   object BoxEngines: TPanel
     Left = 0
-    Top = 431
+    Top = 430
     Width = 553
-    Height = 225
+    Height = 180
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 5
-    ExplicitWidth = 549
+    TabOrder = 4
+    ExplicitTop = 440
   end
   object BoxBrakes: TPanel
     Left = 328
@@ -600,25 +584,9 @@ object FrmMain: TFrmMain
     Width = 113
     Height = 105
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 6
-    object ShBrakeL: TShape
-      Left = 0
-      Top = 0
-      Width = 57
-      Height = 65
-      Brush.Color = 4210816
-      Pen.Style = psClear
-    end
-    object ShBrakeR: TShape
-      Left = 56
-      Top = 0
-      Width = 57
-      Height = 65
-      Brush.Color = 4210816
-      Pen.Style = psClear
-    end
+    TabOrder = 5
   end
   object BoxSpoilersSide: TPanel
     Left = 208
@@ -626,25 +594,9 @@ object FrmMain: TFrmMain
     Width = 113
     Height = 105
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
     ParentBackground = False
-    TabOrder = 7
-    object ShSpoilerL: TShape
-      Left = 0
-      Top = 0
-      Width = 57
-      Height = 65
-      Brush.Color = 4210816
-      Pen.Style = psClear
-    end
-    object ShSpoilerR: TShape
-      Left = 56
-      Top = 0
-      Width = 57
-      Height = 65
-      Brush.Color = 4210816
-      Pen.Style = psClear
-    end
+    TabOrder = 6
   end
   object BoxDescentRamp: TPanel
     Left = 240
@@ -652,7 +604,17 @@ object FrmMain: TFrmMain
     Width = 305
     Height = 137
     BevelOuter = bvNone
-    Color = clGray
+    Color = 2368548
+    ParentBackground = False
+    TabOrder = 7
+  end
+  object BoxTanks: TPanel
+    Left = 8
+    Top = 296
+    Width = 193
+    Height = 105
+    BevelOuter = bvNone
+    Color = 2368548
     ParentBackground = False
     TabOrder = 8
   end

@@ -7,7 +7,8 @@ uses
   UDataProcess in 'UDataProcess.pas',
   UFrameEngine in 'UFrameEngine.pas' {FrameEngine: TFrame},
   ULevelCmdXReal in 'ULevelCmdXReal.pas',
-  UDescentRamp in 'UDescentRamp.pas';
+  UDescentRamp in 'UDescentRamp.pas',
+  ULevel in 'ULevel.pas';
 
 {$R *.res}
 
