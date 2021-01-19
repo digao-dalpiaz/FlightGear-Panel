@@ -2,12 +2,14 @@ unit UDescentRamp;
 
 interface
 
-uses Vcl.Controls, UPropertyList;
+uses Vcl.Controls, System.Types, UPropertyList;
 
 type
   TDescentRamp = class(TGraphicControl)
   private
     RunwayAltFt, RunwayDistNm, AirplaneAltFt: Extended;
+
+    function GetPos(AltFt, DistNm: Extended): TPoint;
   protected
     procedure Paint; override;
   public
@@ -18,33 +20,38 @@ implementation
 
 uses Vcl.Graphics;
 
-procedure TDescentRamp.Paint;
 const
   WIDTH_NM = 15;
+  HEIGHT_FT = 6000;
+
   IDEAL_START_ALT_FT = 4000;
   IDEAL_START_DIST_NM = 12;
+
+
+function TDescentRamp.GetPos(AltFt, DistNm: Extended): TPoint;
+begin
+  Result := TPoint.Create(
+    Width - Round(Width * DistNm / WIDTH_NM),
+    Height - Round(Height * AltFt / HEIGHT_FT)
+  );
+end;
+
+procedure TDescentRamp.Paint;
 var
-  BoxHeightFt, AltFt: Extended;
-  PosAirplaneX, PosAirplaneY: Integer;
+  StartPos, PlanePos: TPoint;
 begin
   inherited;
   if (RunwayDistNm = 0) or (RunwayDistNm > WIDTH_NM) then Exit;
 
-  BoxHeightFt := 2 * (IDEAL_START_ALT_FT * WIDTH_NM / IDEAL_START_DIST_NM);
-  AltFt := AirplaneAltFt - RunwayAltFt;
-
-  PosAirplaneX := Round(Width * RunwayDistNm / WIDTH_NM);
-  PosAirplaneX := Width - PosAirplaneX;
-
-  PosAirplaneY := Round(Height * AltFt / BoxHeightFt);
-  PosAirplaneY := Height - PosAirplaneY;
+  StartPos := GetPos(IDEAL_START_ALT_FT, IDEAL_START_DIST_NM);
+  PlanePos := GetPos(AirplaneAltFt - RunwayAltFt, RunwayDistNm);
 
   Canvas.Pen.Color := clGreen;
-  Canvas.MoveTo(0, Height div 2);
+  Canvas.MoveTo(StartPos.X, StartPos.Y);
   Canvas.LineTo(Width, Height);
 
   Canvas.Pen.Color := clRed;
-  Canvas.MoveTo(PosAirplaneX, PosAirplaneY);
+  Canvas.MoveTo(PlanePos.X, PlanePos.Y);
   Canvas.LineTo(Width, Height);
 end;
 
