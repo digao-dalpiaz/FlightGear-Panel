@@ -100,25 +100,13 @@ implementation
 
 uses UDataProcess, System.SysUtils, Vcl.Graphics, System.Math;
 
-type TFloatValueType = (vtDecimal, vtInteger);
 procedure SetLabelFloat(Lb: TLabel; Value: Extended;
-  &Type: TFloatValueType; OKContidion: Boolean; const Sufix: string = '');
+  DecimalPoints: Byte; OKContidion: Boolean; const Sufix: string = '');
 var
   A: string;
 begin
-  case &Type of
-    vtDecimal:
-      begin
-        Value := RoundTo(Value, -2);
-        A := FormatFloat('0.00', Value);
-      end;
-    vtInteger:
-      begin
-        Value := Round(Value);
-        A := Value.ToString;
-      end;
-    else raise Exception.Create('Invalid type');
-  end;
+  Value := RoundTo(Value, -DecimalPoints);
+  A := FormatFloat('0.'+StringOfChar('0', DecimalPoints), Value);
 
   Lb.Caption := A+Sufix;
 
@@ -250,19 +238,19 @@ var
   Level: TLevel;
   Tank: TPL_Tank;
 begin
-  SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, vtDecimal, True, ' kts');
-  SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, vtDecimal, True, ' kts');
-  SetLabelFloat(LbMach, L.Mach, vtDecimal, True);
-  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, vtInteger, True, ' ft');
+  SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, 1, True, ' kts');
+  SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, 1, True, ' kts');
+  SetLabelFloat(LbMach, L.Mach, 2, True);
+  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, 0, True, ' ft');
 
-  SetLabelFloat(LbAltitude, L.Altitude_Ft, vtInteger, True, ' ft');
-  SetLabelFloat(LbAltitudeAGL, L.Altitude_Agl_Ft, vtInteger, L.Altitude_Agl_Ft>=2000, ' ft');
+  SetLabelFloat(LbAltitude, L.Altitude_Ft, 0, True, ' ft');
+  SetLabelFloat(LbAltitudeAGL, L.Altitude_Agl_Ft, 0, L.Altitude_Agl_Ft>=2000, ' ft');
 
-  SetLabelFloat(LbSpeedUp, L.Speed_Up, vtInteger, L.Speed_Up=1, 'x');
+  SetLabelFloat(LbSpeedUp, L.Speed_Up, 0, L.Speed_Up=1, 'x');
   LbView.Caption := L.CurrentView_Number.ToString+'-'+L.CurrentView_Name;
 
-  SetLabelFloat(LbDestinationElev, L.RouteManager.Destination_Field_Elevation_Ft, vtInteger, True, ' ft');
-  SetLabelFloat(LbDestinationDist, L.RouteManager.Distance_Remaining_Nm, vtDecimal, True, ' nm');
+  SetLabelFloat(LbDestinationElev, L.RouteManager.Destination_Field_Elevation_Ft, 0, True, ' ft');
+  SetLabelFloat(LbDestinationDist, L.RouteManager.Distance_Remaining_Nm, 2, True, ' nm');
 
   if not L.RouteManager.Destination_Airport.IsEmpty then
     LbDestination.Caption := L.RouteManager.Destination_Airport+'-'+
@@ -286,10 +274,10 @@ begin
     Level.SetValue(Tank.Level_Norm, Tank.Name+': '+FormatFloat('#,##0', Tank.Level_Lbs));
   end;
 
-  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Lbs, vtInteger, True, ' lbs');
+  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Lbs, 0, True, ' lbs');
 
-  SetLabelFloat(LbMaxTakeoff, L.Maximum_Takeoff_Mass_Lbs, vtInteger, True, ' lbs');
-  SetLabelFloat(LbMaxLanding, L.Maximum_Landing_Mass_Lbs, vtInteger, True, ' lbs');
+  SetLabelFloat(LbMaxTakeoff, L.Maximum_Takeoff_Mass_Lbs, 0, True, ' lbs');
+  SetLabelFloat(LbMaxLanding, L.Maximum_Landing_Mass_Lbs, 0, True, ' lbs');
 
   LevelSpoilerL.SetValue(L.Controls.Spoiler_L_Sum);
   LevelSpoilerR.SetValue(L.Controls.Spoiler_R_Sum);
@@ -302,14 +290,14 @@ begin
   else
     LbParking.Font.Color := clGray;
 
-  SetLabelFloat(LbAutoBrake, L.Controls.AutoBrakes, vtInteger, True);
-  SetLabelFloat(LbAutobrake2, L.Autopilot_Autobrake_Step, vtInteger, True);
-  SetLabelFloat(LbAutobrake3, L.Autopilot_Settings_Autobrake, vtInteger, True);
+  SetLabelFloat(LbAutoBrake, L.Controls.AutoBrakes, 0, True);
+  SetLabelFloat(LbAutobrake2, L.Autopilot_Autobrake_Step, 0, True);
+  SetLabelFloat(LbAutobrake3, L.Autopilot_Settings_Autobrake, 0, True);
 
-  SetLabelFloat(LbSpeedBrake_Arm, L.Controls.SpeedBrake_Arm, vtInteger, True);
-  SetLabelFloat(LbSpeedBrake_Lever, L.Controls.SpeedBrake_Lever, vtInteger, True);
-  SetLabelFloat(LbSpeedBrake_Norm, L.Controls.SpeedBrake_Norm, vtDecimal, True);
-  SetLabelFloat(LbSpeedBrake_Output, L.Controls.SpeedBrake_Output, vtDecimal, True);
+  SetLabelFloat(LbSpeedBrake_Arm, L.Controls.SpeedBrake_Arm, 0, True);
+  SetLabelFloat(LbSpeedBrake_Lever, L.Controls.SpeedBrake_Lever, 0, True);
+  SetLabelFloat(LbSpeedBrake_Norm, L.Controls.SpeedBrake_Norm, 2, True);
+  SetLabelFloat(LbSpeedBrake_Output, L.Controls.SpeedBrake_Output, 2, True);
 
   if L.Controls.Ground_Spoilers_Armed then
     LbGroundSpoilersArmed.Font.Color := clLime
