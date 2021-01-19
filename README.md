@@ -18,3 +18,16 @@ Several times using the simulator, it occurred to me to command the flaps and th
 With this in mind, I developed this application that communicates via the socket with FlightGear and shows several parameters of the aircraft in real time, including the commanded values ​​and the values ​​in operation. For example, if you command the flaps, there is the value you commanded, and the actual position.
 
 **To use this application together with the simulator, it is essential to have 2 monitors. If not, you can also use the application on another computer, communicating over a network.**
+
+## How to use
+
+1. Run XMLGen app and generate XML file specifying the FlightGear installation directory.
+
+2. Run FGPanel app (an UDP Server socket will automatically start).
+   *If you are going to use this app on another remote computer, remember to allow access through the firewall.*
+   
+3. Run FlightGear specifying the following command-line argument (FlightGear > Settings > Additional Settings):
+```
+--generic=socket,out,20,localhost,6688,udp,digao_panel
+```
+*Replace "localhost" by the remote computer address if you are using remote app.
