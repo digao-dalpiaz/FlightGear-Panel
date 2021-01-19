@@ -98,15 +98,15 @@ object FrmConfig: TFrmConfig
   object BtnOK: TButton
     Left = 144
     Top = 168
-    Width = 89
+    Width = 81
     Height = 25
     Caption = 'OK'
     TabOrder = 1
   end
   object BtnCancel: TButton
-    Left = 240
+    Left = 232
     Top = 168
-    Width = 89
+    Width = 81
     Height = 25
     Cancel = True
     Caption = 'Cancel'

@@ -17,6 +17,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmMain, FrmMain);
-  Application.CreateForm(TFrmConfig, FrmConfig);
   Application.Run;
 end.

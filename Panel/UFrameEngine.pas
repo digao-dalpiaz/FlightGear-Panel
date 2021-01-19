@@ -19,7 +19,7 @@ type
     LbCutOff: TLabel;
     Label1: TLabel;
     BoxThrottle: TPanel;
-    Bevel1: TBevel;
+    Shape1: TShape;
   private
     EngineIndex: Integer;
 
@@ -54,10 +54,10 @@ begin
   Eng := L.Engines[EngineIndex];
   Ctrl := L.Controls.Engines[EngineIndex];
 
-  LevelThrottle.UpdateValue(Ctrl.Throttle, Eng.Itt_Norm);
+  LevelThrottle.UpdateValue(Ctrl.Throttle, Eng.N1 / 100);
   LevelReverser.UpdateValue(IfThen(Ctrl.Reverser, 1, 0), Eng.Reverser_Pos_Norm);
 
-  LbCutOff.Visible := Ctrl.CutOff;
+  LbCutOff.Visible := Eng.Cutoff or Ctrl.Cutoff;
   LbCranking.Visible := Eng.Cranking;
   LbIgnition.Visible := Eng.Ignition;
   LbRunning.Visible := Eng.Running;

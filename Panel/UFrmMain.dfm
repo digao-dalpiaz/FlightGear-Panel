@@ -5,7 +5,7 @@ object FrmMain: TFrmMain
   BorderStyle = bsSingle
   Caption = 'FlightGear Panel'
   ClientHeight = 620
-  ClientWidth = 553
+  ClientWidth = 552
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWhite
@@ -540,11 +540,12 @@ object FrmMain: TFrmMain
   object BoxEngines: TPanel
     Left = 0
     Top = 440
-    Width = 553
+    Width = 552
     Height = 180
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
+    ExplicitWidth = 553
   end
   object BoxBrakes: TPanel
     Left = 328

@@ -273,7 +273,7 @@ begin
 
   for I := 0 to LevelsTanks.Count-1 do
   begin
-    LevelsTanks[I].Visible := L.Tanks[I].Hidden;
+    LevelsTanks[I].Visible := not L.Tanks[I].Hidden;
     LevelsTanks[I].Description := L.Tanks[I].Name;
     LevelsTanks[I].Value := L.Tanks[I].Level_Norm;
   end;

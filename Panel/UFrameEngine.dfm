@@ -74,14 +74,14 @@ object FrameEngine: TFrameEngine
       Height = 13
       Caption = 'THROTTLE'
     end
-    object Bevel1: TBevel
-      Left = 128
+    object Shape1: TShape
+      Left = 137
       Top = 13
-      Width = 10
+      Width = 1
       Height = 170
       Align = alRight
-      Shape = bsRightLine
-      ExplicitLeft = 136
+      Pen.Color = clGray
+      ExplicitLeft = 129
     end
     object BoxRev: TPanel
       Left = 8

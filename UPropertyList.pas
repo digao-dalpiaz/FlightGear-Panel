@@ -42,35 +42,42 @@ type
     Distance_Remaining_Nm: TFloatValue;
   end;
 
+  //Path: /consumables/fuel/tank[n]
   TPL_Tank = class(TPropertyListGroup)
   public
     [Chunk('hidden')]
     Hidden: Boolean;
+    [Chunk('level-kg')]
+    Level_Kg: TFloatValue;
+    [Chunk('level-lbs')]
+    Level_Lbs: TFloatValue;
     [Chunk('level-norm')]
     Level_Norm: TFloatValue;
     [Chunk('name')]
     Name: string;
   end;
 
+  //Path: /controls/engines/engine[n]
   TPL_EngineControls = class(TPropertyListGroup)
   public
     [Chunk('cutoff')]
-    CutOff: Boolean;
+    Cutoff: Boolean;
     [Chunk('reverser')]
     Reverser: Boolean;
     [Chunk('throttle')]
     Throttle: TFloatValue;
   end;
 
+  //Path: /controls
   TPL_Controls = class(TPropertyListGroup)
   public
-    [Chunk('engines/engine', 6)]
+    [Chunk('engines/engine', 4)]
     Engines: TObjectList<TPL_EngineControls>;
 
     [Chunk('flight/flaps')]
     Flaps: TFloatValue;
-    [Chunk('flight/flaps-serviceable')]
-    Flaps_Serviceable: Boolean;
+    //[Chunk('flight/flaps-serviceable')]
+    //Flaps_Serviceable: Boolean;
     [Chunk('flight/ground-spoilers-armed')]
     Ground_Spoilers_Armed: Boolean;
 
@@ -118,16 +125,17 @@ type
     destructor Destroy; override;
   end;
 
+  //Path: /engines/engine[n]
   TPL_Engine = class(TPropertyListGroup)
   public
-    //ToDo: review more properties
-
     [Chunk('cranking')]
     Cranking: Boolean;
+    [Chunk('cutoff')]
+    Cutoff: Boolean;
     [Chunk('ignition')]
     Ignition: Boolean;
-    [Chunk('itt-norm')]
-    Itt_Norm: TFloatValue;
+    [Chunk('n1')]
+    N1: TFloatValue;
     [Chunk('reversed')]
     Reversed: Boolean;
     [Chunk('reverser-pos-norm')]
@@ -138,12 +146,14 @@ type
     Starter: Boolean;
   end;
 
+  //Path: /gear/gear[n]
   TPL_Gear = class(TPropertyListGroup)
   public
     [Chunk('position-norm')]
     Position_Norm: TFloatValue;
   end;
 
+  //Path: /sim/view[n]
   TPL_View = class(TPropertyListGroup)
   public
     [Chunk('enabled')]
@@ -154,27 +164,23 @@ type
 
   TPropertyList = class(TPropertyListGroup)
   public
+    //'autopilot/...'?
+
     [Chunk('autopilot/autobrake/step')]
     Autopilot_Autobrake_Step: TFloatValue;
-
     [Chunk('autopilot/settings/autobrake')]
     Autopilot_Settings_Autobrake: TFloatValue;
-
     [Chunk('autopilot/route-manager')]
     RouteManager: TPL_RouteManager;
 
-    //'autopilot/display/...'?
-    //'autopilot/internal/...'?
-    //'autopilot/locks/...'?
-    //'autopilot/route-manager/...'?
-    //'autopilot/settings/...'?
-    //'autopilot/target-tracking/...'?
-
     [Chunk('consumables/fuel/tank', 5)]
     Tanks: TObjectList<TPL_Tank>;
-
     [Chunk('consumables/fuel/total-fuel-kg')]
     Total_Fuel_Kg: TFloatValue;
+    [Chunk('consumables/fuel/total-fuel-lbs')]
+    Total_Fuel_Lbs: TFloatValue;
+    [Chunk('consumables/fuel/total-fuel-norm')]
+    Total_Fuel_Norm: TFloatValue;
 
     //'controls/APU/...'?
     //'controls/autoflight/...'?
@@ -192,13 +198,17 @@ type
 
     [Chunk('gear/gear', 1)]
     Gears: TObjectList<TPL_Gear>;
-
-    [Chunk('gear/serviceable')]
-    Gear_Serviceable: Boolean;
+    //[Chunk('gear/serviceable')]
+    //Gear_Serviceable: Boolean;
 
     //'instrumentation/...'?
     //'it-autoflight/...'?
-    //'limits/...'?
+
+    [Chunk('limits/mass-and-balance/maximum-landing-mass-lbs')]
+    Maximum_Landing_Mass_Lbs: TFloatValue;
+    [Chunk('limits/mass-and-balance/maximum-takeoff-mass-lbs')]
+    Maximum_Takeoff_Mass_Lbs: TFloatValue;
+
 
     [Chunk('position/altitude-agl-ft')]
     Altitude_Agl_Ft: TFloatValue; //terrain alt
@@ -207,8 +217,8 @@ type
 
     [Chunk('sim/airport/closest-airport-id')]
     Closest_Airport_Id: string;
-    [Chunk('sim/crashed')]
-    Crashed: Boolean;
+    //[Chunk('sim/crashed')]
+    //Crashed: Boolean;
 
     [Chunk('sim/current-view/name')]
     CurrentView_Name: string;
@@ -221,7 +231,6 @@ type
 
     //[Chunk('sim/view', 10)]
     //Views: TObjectList<TPL_View>;
-
     //[Chunk('sim/view', 10, 100)]
     //ViewsAlt: TObjectList<TPL_View>;
 
