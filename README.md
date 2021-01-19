@@ -30,4 +30,7 @@ With this in mind, I developed this application that communicates via the socket
 ```
 --generic=socket,out,20,localhost,6688,udp,digao_panel
 ```
-*Replace "localhost" by the remote computer address if you are using remote app.
+
+> Replace "localhost" by the remote computer address if you are using remote app.
+
+**The next time you play, you only need to open FGPanel and FlightGear.**
