@@ -33,9 +33,9 @@ begin
   end;
 end;
 
-function StrToBoolean(const Value: string): Boolean;
+function XMLStrToBoolean(const Value: string): Boolean;
 begin
-  if Value=string.Empty then Result := False else
+  if Value.IsEmpty then Result := False else
   if Value='true' then Result := True else
   if Value='false' then Result := False else
     raise Exception.Create('Invalid boolean value');
@@ -78,7 +78,7 @@ begin
         ValueStr := S[Index]; Inc(Index);
         case F.FieldType.TypeKind of
           tkUString: ValueTyped := ValueStr;
-          tkEnumeration: ValueTyped := StrToBoolean(ValueStr);
+          tkEnumeration: ValueTyped := XMLStrToBoolean(ValueStr);
           tkFloat: ValueTyped := StrToFloat(ValueStr, TFormatSettings.Invariant);
           else raise Exception.CreateFmt('Invalid FieldType "%s"', [F.FieldType.ToString]);
         end;

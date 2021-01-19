@@ -43,7 +43,7 @@ begin
   Canvas.MoveTo(0, Height div 2);
   Canvas.LineTo(Width, Height);
 
-  Canvas.Pen.Color := clBlue;
+  Canvas.Pen.Color := clRed;
   Canvas.MoveTo(PosAirplaneX, PosAirplaneY);
   Canvas.LineTo(Width, Height);
 end;

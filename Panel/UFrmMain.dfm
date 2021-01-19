@@ -1,8 +1,10 @@
 object FrmMain: TFrmMain
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'FlightGear Panel'
-  ClientHeight = 610
+  ClientHeight = 620
   ClientWidth = 553
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -18,12 +20,12 @@ object FrmMain: TFrmMain
   object Label1: TLabel
     Left = 8
     Top = 8
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Air Speed:'
-    Color = 2368548
+    Color = 5592405
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 9230834
     Font.Height = -19
@@ -34,15 +36,15 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbAirSpeed: TLabel
-    Left = 152
+    Left = 144
     Top = 8
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '#####'
-    Color = 2368548
+    Color = 5592405
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clYellow
+    Font.Color = clWhite
     Font.Height = -19
     Font.Name = 'Tahoma'
     Font.Style = []
@@ -53,7 +55,7 @@ object FrmMain: TFrmMain
   object Label2: TLabel
     Left = 8
     Top = 40
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
@@ -69,9 +71,9 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbGroundSpeed: TLabel
-    Left = 152
+    Left = 144
     Top = 40
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '#####'
@@ -91,12 +93,6 @@ object FrmMain: TFrmMain
     Width = 51
     Height = 13
     Caption = 'Total Fuel:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbTotalFuel: TLabel
     Left = 64
@@ -107,67 +103,61 @@ object FrmMain: TFrmMain
   end
   object Label7: TLabel
     Left = 448
-    Top = 368
-    Width = 23
+    Top = 344
+    Width = 60
     Height = 13
-    Caption = 'Arm:'
+    Caption = 'Speed Brake'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
+    Font.Color = clTeal
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object LbSpeedBrake_Arm: TLabel
-    Left = 480
-    Top = 368
+    Left = 496
+    Top = 360
     Width = 24
     Height = 13
     Caption = '###'
   end
   object Label9: TLabel
-    Left = 448
-    Top = 384
+    Left = 456
+    Top = 376
     Width = 31
     Height = 13
     Caption = 'Lever:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbSpeedBrake_Lever: TLabel
-    Left = 480
-    Top = 384
+    Left = 496
+    Top = 376
     Width = 24
     Height = 13
     Caption = '###'
   end
   object Label8: TLabel
     Left = 448
-    Top = 320
-    Width = 59
+    Top = 312
+    Width = 53
     Height = 13
-    Caption = 'AutoBrakes:'
+    Caption = 'Auto Brake'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
+    Font.Color = clTeal
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
-  object LbAutoBrakes: TLabel
-    Left = 512
-    Top = 320
+  object LbAutoBrake: TLabel
+    Left = 456
+    Top = 328
     Width = 8
     Height = 13
     Caption = '#'
   end
   object LbParking: TLabel
     Left = 448
-    Top = 288
+    Top = 280
     Width = 100
     Height = 25
     Caption = '[ Parking ]'
@@ -181,12 +171,12 @@ object FrmMain: TFrmMain
   object Label17: TLabel
     Left = 8
     Top = 144
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
     Caption = 'Altitude:'
-    Color = 2368548
+    Color = 5592405
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 9230834
     Font.Height = -19
@@ -197,15 +187,15 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbAltitude: TLabel
-    Left = 152
+    Left = 144
     Top = 144
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '####'
-    Color = 2368548
+    Color = 5592405
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clYellow
+    Font.Color = clWhite
     Font.Height = -19
     Font.Name = 'Tahoma'
     Font.Style = []
@@ -216,11 +206,11 @@ object FrmMain: TFrmMain
   object Label22: TLabel
     Left = 8
     Top = 176
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
-    Caption = 'Altitude AGL:'
+    Caption = 'HAGL:'
     Color = 2368548
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 9230834
@@ -232,9 +222,9 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbAltitudeAGL: TLabel
-    Left = 152
+    Left = 144
     Top = 176
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '####'
@@ -254,12 +244,6 @@ object FrmMain: TFrmMain
     Width = 26
     Height = 13
     Caption = 'View:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clOlive
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbView: TLabel
     Left = 280
@@ -274,12 +258,6 @@ object FrmMain: TFrmMain
     Width = 34
     Height = 13
     Caption = 'Speed:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clOlive
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbSpeedUp: TLabel
     Left = 280
@@ -291,7 +269,7 @@ object FrmMain: TFrmMain
   object Label32: TLabel
     Left = 8
     Top = 72
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
@@ -307,9 +285,9 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbMach: TLabel
-    Left = 152
+    Left = 144
     Top = 72
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '#####'
@@ -326,7 +304,7 @@ object FrmMain: TFrmMain
   object Label33: TLabel
     Left = 8
     Top = 104
-    Width = 137
+    Width = 129
     Height = 25
     Alignment = taRightJustify
     AutoSize = False
@@ -342,9 +320,9 @@ object FrmMain: TFrmMain
     Transparent = False
   end
   object LbVertSpeed: TLabel
-    Left = 152
+    Left = 144
     Top = 104
-    Width = 81
+    Width = 89
     Height = 25
     AutoSize = False
     Caption = '#####'
@@ -389,16 +367,16 @@ object FrmMain: TFrmMain
   object Label18: TLabel
     Left = 328
     Top = 280
-    Width = 74
+    Width = 38
     Height = 13
-    Caption = 'BRAKES [CTRL]'
+    Caption = 'BRAKES'
   end
   object Label12: TLabel
     Left = 208
     Top = 280
-    Width = 110
+    Width = 80
     Height = 13
-    Caption = 'SPOILERS SIDE [CTRL]'
+    Caption = 'SPOILERS SIDES'
   end
   object Label6: TLabel
     Left = 8
@@ -413,12 +391,6 @@ object FrmMain: TFrmMain
     Width = 58
     Height = 13
     Caption = 'Destination:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clOlive
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbDestination: TLabel
     Left = 304
@@ -433,12 +405,6 @@ object FrmMain: TFrmMain
     Width = 64
     Height = 13
     Caption = 'Airport Elev.:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clOlive
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object Label13: TLabel
     Left = 408
@@ -446,12 +412,6 @@ object FrmMain: TFrmMain
     Width = 62
     Height = 13
     Caption = 'Airport Dist.:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clOlive
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object LbDestinationElev: TLabel
     Left = 480
@@ -467,66 +427,75 @@ object FrmMain: TFrmMain
     Height = 13
     Caption = '####'
   end
-  object Label15: TLabel
-    Left = 448
-    Top = 336
-    Width = 59
-    Height = 13
-    Caption = 'AutoBrakes:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object LbAutobrake2: TLabel
-    Left = 512
-    Top = 336
+    Left = 488
+    Top = 328
     Width = 8
     Height = 13
     Caption = '#'
   end
-  object Label19: TLabel
-    Left = 448
-    Top = 352
-    Width = 59
-    Height = 13
-    Caption = 'AutoBrakes:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = 16744576
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object LbAutobrake3: TLabel
-    Left = 512
-    Top = 352
+    Left = 520
+    Top = 328
     Width = 8
     Height = 13
     Caption = '#'
   end
   object Label16: TLabel
-    Left = 200
+    Left = 144
     Top = 408
     Width = 75
     Height = 13
     Caption = 'Closest Airport:'
   end
   object LbClosestAirport: TLabel
-    Left = 288
+    Left = 224
     Top = 408
     Width = 79
     Height = 13
     Caption = 'LbClosestAirport'
   end
   object LbGroundSpoilersArmed: TLabel
-    Left = 432
+    Left = 328
     Top = 408
     Width = 109
     Height = 13
     Caption = 'Ground Spoilers Armed'
+  end
+  object Label15: TLabel
+    Left = 456
+    Top = 360
+    Width = 23
+    Height = 13
+    Caption = 'Arm:'
+  end
+  object LbSpeedBrake_Norm: TLabel
+    Left = 496
+    Top = 392
+    Width = 24
+    Height = 13
+    Caption = '###'
+  end
+  object Label20: TLabel
+    Left = 456
+    Top = 408
+    Width = 38
+    Height = 13
+    Caption = 'Output:'
+  end
+  object LbSpeedBrake_Output: TLabel
+    Left = 496
+    Top = 408
+    Width = 24
+    Height = 13
+    Caption = '###'
+  end
+  object Label23: TLabel
+    Left = 456
+    Top = 392
+    Width = 29
+    Height = 13
+    Caption = 'Norm:'
   end
   object BoxFlaps: TPanel
     Left = 8
@@ -570,13 +539,12 @@ object FrmMain: TFrmMain
   end
   object BoxEngines: TPanel
     Left = 0
-    Top = 430
+    Top = 440
     Width = 553
     Height = 180
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
-    ExplicitTop = 440
   end
   object BoxBrakes: TPanel
     Left = 328

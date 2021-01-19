@@ -12,7 +12,6 @@ object FrameEngine: TFrameEngine
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 146
     object LbTitle: TLabel
       Left = 0
       Top = 0
@@ -90,7 +89,7 @@ object FrameEngine: TFrameEngine
       Width = 121
       Height = 41
       BevelOuter = bvNone
-      Color = clGray
+      Color = 2368548
       ParentBackground = False
       TabOrder = 0
     end
@@ -100,7 +99,7 @@ object FrameEngine: TFrameEngine
       Width = 121
       Height = 41
       BevelOuter = bvNone
-      Color = clGray
+      Color = 2368548
       ParentBackground = False
       TabOrder = 1
     end

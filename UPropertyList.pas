@@ -103,16 +103,16 @@ type
 
     [Chunk('gear/gear-down')]
     Gear_Down: Boolean;
-    [Chunk('gear/steering')]
-    Steering: TFloatValue;
-    [Chunk('gear/tailhook')]
-    TailHook: Boolean;
-    [Chunk('gear/tailwheel-lock')]
-    TailWheel_Lock: Boolean;
-    [Chunk('gear/tiller-cmd-norm')]
-    Tiller_Cmd_Norm: TFloatValue;
-    [Chunk('gear/tiller-enabled')]
-    Tiller_Enabled: Boolean;
+    //[Chunk('gear/steering')]
+    //Steering: TFloatValue;
+    //[Chunk('gear/tailhook')]
+    //TailHook: Boolean;
+    //[Chunk('gear/tailwheel-lock')]
+    //TailWheel_Lock: Boolean;
+    //[Chunk('gear/tiller-cmd-norm')]
+    //Tiller_Cmd_Norm: TFloatValue;
+    //[Chunk('gear/tiller-enabled')]
+    //Tiller_Enabled: Boolean;
 
     constructor Create;
     destructor Destroy; override;
@@ -185,12 +185,12 @@ type
 
     //'controls/lighting
 
-    [Chunk('engines/engine', 6)]
+    [Chunk('engines/engine', 4)]
     Engines: TObjectList<TPL_Engine>;
 
     //'environment/...'?
 
-    [Chunk('gear/gear', 5)]
+    [Chunk('gear/gear', 1)]
     Gears: TObjectList<TPL_Gear>;
 
     [Chunk('gear/serviceable')]
@@ -214,8 +214,8 @@ type
     CurrentView_Name: string;
     [Chunk('sim/current-view/view-number')]
     CurrentView_Number: TFloatValue;
-    [Chunk('sim/description')]
-    Sim_Description: string;
+    //[Chunk('sim/description')]
+    //Sim_Description: string;
     [Chunk('sim/speed-up')]
     Speed_Up: TFloatValue;
 
@@ -232,10 +232,10 @@ type
     [Chunk('surface-positions/spoilers-pos-norm')]
     Spoilers_Pos_Norm: TFloatValue;
 
-    [Chunk('switches/no-smoking-sign')]
-    No_Smoking_Sign: Boolean;
-    [Chunk('switches/seatbelt-sign')]
-    Seatbelt_Sign: Boolean;
+    //[Chunk('switches/no-smoking-sign')]
+    //No_Smoking_Sign: Boolean;
+    //[Chunk('switches/seatbelt-sign')]
+    //Seatbelt_Sign: Boolean;
 
     //'systems/...'?
 

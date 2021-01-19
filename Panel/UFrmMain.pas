@@ -2,11 +2,12 @@ unit UFrmMain;
 
 interface
 
-uses Vcl.Forms, IdUDPServer, IdGlobal, IdSocketHandle, System.Classes,
-  IdBaseComponent, IdComponent, IdUDPBase,
+uses Vcl.Forms, IdUDPServer, IdGlobal, IdSocketHandle, IdBaseComponent,
+  IdComponent, IdUDPBase, Vcl.Controls, Vcl.ExtCtrls, System.Classes,
+  Vcl.StdCtrls,
   //
   UPropertyList, UFrameEngine, ULevel, ULevelCmdXReal, UDescentRamp,
-  System.Generics.Collections, Vcl.ExtCtrls, Vcl.Controls, Vcl.StdCtrls;
+  System.Generics.Collections;
 
 type
   TFrmMain = class(TForm)
@@ -22,7 +23,7 @@ type
     Label9: TLabel;
     LbSpeedBrake_Lever: TLabel;
     Label8: TLabel;
-    LbAutoBrakes: TLabel;
+    LbAutoBrake: TLabel;
     LbParking: TLabel;
     Label17: TLabel;
     LbAltitude: TLabel;
@@ -57,14 +58,17 @@ type
     Label13: TLabel;
     LbDestinationElev: TLabel;
     LbDestinationDist: TLabel;
-    Label15: TLabel;
     LbAutobrake2: TLabel;
-    Label19: TLabel;
     LbAutobrake3: TLabel;
     Label16: TLabel;
     LbClosestAirport: TLabel;
     LbGroundSpoilersArmed: TLabel;
     BoxTanks: TPanel;
+    Label15: TLabel;
+    LbSpeedBrake_Norm: TLabel;
+    Label20: TLabel;
+    LbSpeedBrake_Output: TLabel;
+    Label23: TLabel;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread; const AData: TIdBytes;
       ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
@@ -79,7 +83,7 @@ type
 
     procedure CreateEngines;
     procedure UpdatePanel(L: TPropertyList);
-    procedure CreateHorizontalLevels;
+    procedure CreateVerticalLevels;
     procedure CreateTanks;
   end;
 
@@ -92,27 +96,34 @@ implementation
 
 uses UDataProcess, System.SysUtils, Vcl.Graphics, System.Math;
 
+type TFloatValueType = (vtDecimal, vtInteger);
 procedure SetLabelFloat(Lb: TLabel; Value: Extended;
-  IntegerOnly: Boolean; OKContidion: Boolean; const Sufix: string = '');
+  &Type: TFloatValueType; OKContidion: Boolean; const Sufix: string = '');
 var
   A: string;
 begin
-  if IntegerOnly then
-  begin
-    Value := Round(Value);
-    A := Value.ToString;
-  end else
-  begin
-    Value := RoundTo(Value, -2);
-    A := FormatFloat('0.00', Value);
+  case &Type of
+    vtDecimal:
+      begin
+        Value := RoundTo(Value, -2);
+        A := FormatFloat('0.00', Value);
+      end;
+    vtInteger:
+      begin
+        Value := Round(Value);
+        A := Value.ToString;
+      end;
+    else raise Exception.Create('Invalid type');
   end;
 
   Lb.Caption := A+Sufix;
 
   if Value=0 then
-    Lb.Font.Color := clGray else
+    Lb.Font.Color := clGray
+  else
   if OKContidion then
-    Lb.Font.Color := clLime else
+    Lb.Font.Color := clLime
+  else
     Lb.Font.Color := clRed;
 end;
 
@@ -129,7 +140,7 @@ begin
   CreateLevel(LevelSpeedBrake, BoxSpeedBrake);
   CreateLevel(LevelGear, BoxGear);
 
-  CreateHorizontalLevels;
+  CreateVerticalLevels;
 
   FramesEngines := TList<TFrameEngine>.Create;
   CreateEngines;
@@ -144,7 +155,7 @@ begin
   LevelsTanks.Free;
 end;
 
-procedure TFrmMain.CreateHorizontalLevels;
+procedure TFrmMain.CreateVerticalLevels;
 begin
   LevelSpoilerL := TLevel.Create(Self, clRed, True);
   LevelSpoilerL.Parent := BoxSpoilersSide;
@@ -165,6 +176,25 @@ begin
   LevelBrakeR.Align := alClient;
 end;
 
+procedure TFrmMain.CreateEngines;
+var
+  I: Integer;
+  F: TFrameEngine;
+  X: Integer;
+begin
+  X := 0;
+
+  for I := 1 to 4 do
+  begin
+    F := TFrameEngine.Create(Self, I);
+    F.Name := 'FrameEngine_'+I.ToString;
+    F.Parent := BoxEngines;
+    F.Top := 0;
+    F.Left := X; X := X + F.Width;
+    FramesEngines.Add(F);
+  end;
+end;
+
 procedure TFrmMain.CreateTanks;
 var
   I, Y: Integer;
@@ -183,25 +213,6 @@ begin
     LevelsTanks.Add(Level);
 
     Y := Level.Top+Level.Height;
-  end;
-end;
-
-procedure TFrmMain.CreateEngines;
-var
-  I: Integer;
-  F: TFrameEngine;
-  X: Integer;
-begin
-  X := 0;
-
-  for I := 1 to 4 do
-  begin
-    F := TFrameEngine.Create(Self, I);
-    F.Name := 'FrameEngine_'+I.ToString;
-    F.Parent := BoxEngines;
-    F.Top := 0;
-    F.Left := X; X := X + F.Width;
-    FramesEngines.Add(F);
   end;
 end;
 
@@ -230,89 +241,44 @@ end;
 
 procedure TFrmMain.UpdatePanel(L: TPropertyList);
 var
-  FrameEngine: TFrameEngine;
   I: Integer;
+  FrameEngine: TFrameEngine;
 begin
-  {LTanks.Items.BeginUpdate;
-  try
-    LTanks.Items.Clear;
-    for Tank in L.Tanks do
-    begin
-      if Tank.Hidden then Continue;
-      LTanks.Items.Add(Format('%s: %g', [Tank.Name, Tank.Level_Norm]));
-    end;
-  finally
-    LTanks.Items.EndUpdate;
-  end;}
+  SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, vtDecimal, True, ' kts');
+  SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, vtDecimal, True, ' kts');
+  SetLabelFloat(LbMach, L.Mach, vtDecimal, True);
+  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, vtInteger, True, ' ft');
 
-  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Kg, True, L.Total_Fuel_Kg>1000, ' kg');
+  SetLabelFloat(LbAltitude, L.Altitude_Ft, vtInteger, True, ' ft');
+  SetLabelFloat(LbAltitudeAGL, L.Altitude_Agl_Ft, vtInteger, L.Altitude_Agl_Ft>=2000, ' ft');
 
-  //L.Controls.Flaps_Serviceable
-
-  if L.Controls.Ground_Spoilers_Armed then
-    LbGroundSpoilersArmed.Font.Color := clLime
-  else
-    LbGroundSpoilersArmed.Font.Color := clGray;
-
-  SetLabelFloat(LbSpeedBrake_Arm, L.Controls.SpeedBrake_Arm, True, True);
-  SetLabelFloat(LbSpeedBrake_Lever, L.Controls.SpeedBrake_Lever, True, True);
-  //SetLabelFloat(LbSpeedBrake_Norm, L.Controls.SpeedBrake_Norm);
-  //SetLabelFloat(LbSpeedBrake_Output, L.Controls.SpeedBrake_Output);
-
-  SetLabelFloat(LbAutoBrakes, L.Controls.AutoBrakes, True, True);
-
-  if L.Controls.Brake_Parking=1 then
-    LbParking.Font.Color := clLime
-  else
-    LbParking.Font.Color := clGray;
-
-  //L.Controls.Gear_Down - below
-
-  //SetLabelFloat(LbSteering, L.Controls.Steering);
-  //LbTailHook.Caption := L.Controls.TailHook.ToString;
-  //LbTailWheelLock.Caption := L.Controls.TailWheel_Lock.ToString;
-  //SetLabelFloat(LbTillerCmdNorm, L.Controls.Tiller_Cmd_Norm);
-  //LbTillerEnabled.Caption := L.Controls.Tiller_Enabled.ToString;
-
-  //L.Gear_Serviceable
-
-  SetLabelFloat(LbAltitude, L.Altitude_Ft, True, True, ' ft');
-  SetLabelFloat(LbAltitudeAGL, L.Altitude_Agl_Ft, True, True, ' ft');
-
-  LbClosestAirport.Caption := L.Closest_Airport_Id;
-
-  {if L.Crashed then
-    LbCrashed.Font.Color := clLime
-  else
-    LbCrashed.Font.Color := clGray;}
-
+  SetLabelFloat(LbSpeedUp, L.Speed_Up, vtInteger, L.Speed_Up=1, 'x');
   LbView.Caption := L.CurrentView_Number.ToString+'-'+L.CurrentView_Name;
 
-  //LbSimDesc.Caption := L.Sim_Description;
-  SetLabelFloat(LbSpeedUp, L.Speed_Up, True, L.Speed_Up=1, 'x');
+  SetLabelFloat(LbDestinationElev, L.RouteManager.Destination_Field_Elevation_Ft, vtInteger, True, ' ft');
+  SetLabelFloat(LbDestinationDist, L.RouteManager.Distance_Remaining_Nm, vtDecimal, True, ' nm');
 
-  //L.Views
-  //L.ViewsAlt
-
-  {if L.No_Smoking_Sign then
-    LbNoSmoking.Font.Color := clLime
+  if not L.RouteManager.Destination_Airport.IsEmpty then
+    LbDestination.Caption := L.RouteManager.Destination_Airport+'-'+
+      L.RouteManager.Destination_Name + ' ['+L.RouteManager.Destination_Runway+']'
   else
-    LbNoSmoking.Font.Color := clGray;
+    LbDestination.Caption := string.Empty;
 
-  if L.Seatbelt_Sign then
-    LbSeatbelt.Font.Color := clLime
-  else
-    LbSeatbelt.Font.Color := clGray;}
-
-  SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, False, True);
-  SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, False, True);
-  SetLabelFloat(LbMach, L.Mach, False, True);
-  SetLabelFloat(LbVertSpeed, L.VerticalSpeed * 60, True, True, ' ft');
+  DescentRamp.UpdateData(L);
 
   LevelFlaps.UpdateValue(L.Controls.Flaps, L.Flap_Pos_Norm);
   LevelSpoilers.UpdateValue(L.Controls.Spoilers, L.Spoilers_Pos_Norm);
   LevelSpeedBrake.UpdateValue(L.Controls.SpeedBrake, L.SpeedBrake_Pos_Norm);
   LevelGear.UpdateValue(IfThen(L.Controls.Gear_Down, 1, 0), L.Gears.First.Position_Norm);
+
+  for I := 0 to LevelsTanks.Count-1 do
+  begin
+    LevelsTanks[I].Visible := L.Tanks[I].Hidden;
+    LevelsTanks[I].Description := L.Tanks[I].Name;
+    LevelsTanks[I].Value := L.Tanks[I].Level_Norm;
+  end;
+
+  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Kg, vtInteger, True, ' kg');
 
   LevelSpoilerL.Value := L.Controls.Spoiler_L_Sum;
   LevelSpoilerR.Value := L.Controls.Spoiler_R_Sum;
@@ -320,33 +286,29 @@ begin
   LevelBrakeL.Value := L.Controls.Brake_Left;
   LevelBrakeR.Value := L.Controls.Brake_Right;
 
-  LbDestination.Caption := L.RouteManager.Destination_Airport+'-'+
-    L.RouteManager.Destination_Name + ' ['+L.RouteManager.Destination_Runway+']';
+  if L.Controls.Brake_Parking=1 then
+    LbParking.Font.Color := clLime
+  else
+    LbParking.Font.Color := clGray;
 
-  SetLabelFloat(LbDestinationElev, L.RouteManager.Destination_Field_Elevation_Ft, True, True, ' ft');
-  SetLabelFloat(LbDestinationDist, L.RouteManager.Distance_Remaining_Nm, False, True, ' nm');
+  SetLabelFloat(LbAutoBrake, L.Controls.AutoBrakes, vtInteger, True);
+  SetLabelFloat(LbAutobrake2, L.Autopilot_Autobrake_Step, vtInteger, True);
+  SetLabelFloat(LbAutobrake3, L.Autopilot_Settings_Autobrake, vtInteger, True);
 
-  DescentRamp.UpdateData(L);
+  SetLabelFloat(LbSpeedBrake_Arm, L.Controls.SpeedBrake_Arm, vtInteger, True);
+  SetLabelFloat(LbSpeedBrake_Lever, L.Controls.SpeedBrake_Lever, vtInteger, True);
+  SetLabelFloat(LbSpeedBrake_Norm, L.Controls.SpeedBrake_Norm, vtDecimal, True);
+  SetLabelFloat(LbSpeedBrake_Output, L.Controls.SpeedBrake_Output, vtDecimal, True);
 
-  LbAutobrake2.Caption := L.Autopilot_Autobrake_Step.ToString;
-  LbAutobrake3.Caption := L.Autopilot_Settings_Autobrake.ToString;
+  if L.Controls.Ground_Spoilers_Armed then
+    LbGroundSpoilersArmed.Font.Color := clLime
+  else
+    LbGroundSpoilersArmed.Font.Color := clGray;
+
+  LbClosestAirport.Caption := L.Closest_Airport_Id;
 
   for FrameEngine in FramesEngines do
     FrameEngine.UpdateByEngineIndex(L);
-
-  for I := 0 to LevelsTanks.Count-1 do
-  begin
-    if L.Tanks[I].Hidden then
-    begin
-      LevelsTanks[I].Description := string.Empty;
-      LevelsTanks[I].Value := 0;
-    end else
-    begin
-      LevelsTanks[I].Description := L.Tanks[I].Name;
-      LevelsTanks[I].Value := L.Tanks[I].Level_Norm;
-    end;
-  end;
-
 end;
 
 end.

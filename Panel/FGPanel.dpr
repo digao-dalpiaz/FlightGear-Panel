@@ -8,7 +8,8 @@ uses
   UFrameEngine in 'UFrameEngine.pas' {FrameEngine: TFrame},
   ULevelCmdXReal in 'ULevelCmdXReal.pas',
   UDescentRamp in 'UDescentRamp.pas',
-  ULevel in 'ULevel.pas';
+  ULevel in 'ULevel.pas',
+  UFrmConfig in 'UFrmConfig.pas' {FrmConfig};
 
 {$R *.res}
 
@@ -16,5 +17,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmMain, FrmMain);
+  Application.CreateForm(TFrmConfig, FrmConfig);
   Application.Run;
 end.
