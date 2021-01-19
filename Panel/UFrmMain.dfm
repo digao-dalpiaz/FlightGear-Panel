@@ -622,7 +622,6 @@ object FrmMain: TFrmMain
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
-    ExplicitTop = 452
   end
   object BoxBrakes: TPanel
     Left = 328

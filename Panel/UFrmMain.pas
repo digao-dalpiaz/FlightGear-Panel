@@ -283,8 +283,8 @@ begin
 
   SetLabelFloat(LbTotalFuel, L.Total_Fuel_Lbs, 0, True, ' lbs');
   SetLabelFloat(LbGrossWeight, L.Gross_Weight_Lbs, 0, True, ' lbs');
-  SetLabelFloat(LbMaxTakeoff, L.Maximum_Takeoff_Mass_Lbs, 0, True, ' lbs');
-  SetLabelFloat(LbMaxLanding, L.Maximum_Landing_Mass_Lbs, 0, True, ' lbs');
+  SetLabelFloat(LbMaxTakeoff, Max(L.Maximum_Takeoff_Mass_Lbs, L.Max_Takeoff_Weight), 0, True, ' lbs');
+  SetLabelFloat(LbMaxLanding, Max(L.Maximum_Landing_Mass_Lbs, L.Max_Landing_Weight), 0, True, ' lbs');
 
   LevelSpoilerL.SetValue(L.Controls.Spoiler_L_Sum);
   LevelSpoilerR.SetValue(L.Controls.Spoiler_R_Sum);

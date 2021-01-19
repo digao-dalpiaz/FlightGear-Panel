@@ -224,13 +224,16 @@ type
     Closest_Airport_Id: string;
     //[Chunk('sim/crashed')]
     //Crashed: Boolean;
-
     [Chunk('sim/current-view/name')]
     CurrentView_Name: string;
     [Chunk('sim/current-view/view-number')]
     CurrentView_Number: TFloatValue;
     //[Chunk('sim/description')]
     //Sim_Description: string;
+    [Chunk('sim/max-landing-weight')]
+    Max_Landing_Weight: TFloatValue;
+    [Chunk('sim/max-takeoff-weight')]
+    Max_Takeoff_Weight: TFloatValue;
     [Chunk('sim/speed-up')]
     Speed_Up: TFloatValue;
 
