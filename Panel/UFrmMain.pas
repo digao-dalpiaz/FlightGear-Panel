@@ -73,6 +73,13 @@ type
     LbMaxLanding: TLabel;
     Label21: TLabel;
     LbMaxTakeoff: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    LbAPU_RPM: TLabel;
+    LbAPU_Master: TLabel;
+    LbAPU_Start: TLabel;
+    Label27: TLabel;
+    LbGrossWeight: TLabel;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread; const AData: TIdBytes;
       ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
@@ -275,7 +282,7 @@ begin
   end;
 
   SetLabelFloat(LbTotalFuel, L.Total_Fuel_Lbs, 0, True, ' lbs');
-
+  SetLabelFloat(LbGrossWeight, L.Gross_Weight_Lbs, 0, True, ' lbs');
   SetLabelFloat(LbMaxTakeoff, L.Maximum_Takeoff_Mass_Lbs, 0, True, ' lbs');
   SetLabelFloat(LbMaxLanding, L.Maximum_Landing_Mass_Lbs, 0, True, ' lbs');
 
@@ -308,6 +315,10 @@ begin
 
   for FrameEngine in FramesEngines do
     FrameEngine.UpdateByEngineIndex(L);
+
+  SetLabelFloat(LbAPU_Master, L.Controls.APU_Master, 0, True);
+  SetLabelFloat(LbAPU_Start, L.Controls.APU_Off_Start_Run, 0, True);
+  SetLabelFloat(LbAPU_RPM, L.APU_RPM, 2, True);
 end;
 
 end.

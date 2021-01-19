@@ -4,7 +4,7 @@ object FrmMain: TFrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'FlightGear Panel'
-  ClientHeight = 644
+  ClientHeight = 658
   ClientWidth = 552
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -442,22 +442,22 @@ object FrmMain: TFrmMain
     Caption = '#'
   end
   object Label16: TLabel
-    Left = 232
-    Top = 432
+    Left = 248
+    Top = 448
     Width = 75
     Height = 13
     Caption = 'Closest Airport:'
   end
   object LbClosestAirport: TLabel
-    Left = 312
-    Top = 432
+    Left = 328
+    Top = 448
     Width = 24
     Height = 13
     Caption = 'ZZZZ'
   end
   object LbGroundSpoilersArmed: TLabel
-    Left = 408
-    Top = 432
+    Left = 416
+    Top = 448
     Width = 109
     Height = 13
     Caption = 'Ground Spoilers Armed'
@@ -499,26 +499,75 @@ object FrmMain: TFrmMain
   end
   object Label19: TLabel
     Left = 8
-    Top = 432
+    Top = 448
     Width = 64
     Height = 13
     Caption = 'Max Landing:'
   end
   object LbMaxLanding: TLabel
     Left = 80
-    Top = 432
+    Top = 448
     Width = 64
     Height = 13
     Caption = '########'
   end
   object Label21: TLabel
     Left = 8
-    Top = 416
+    Top = 432
     Width = 64
     Height = 13
     Caption = 'Max Takeoff:'
   end
   object LbMaxTakeoff: TLabel
+    Left = 80
+    Top = 432
+    Width = 64
+    Height = 13
+    Caption = '########'
+  end
+  object Label25: TLabel
+    Left = 192
+    Top = 400
+    Width = 20
+    Height = 13
+    Caption = 'APU'
+  end
+  object Label26: TLabel
+    Left = 200
+    Top = 416
+    Width = 25
+    Height = 13
+    Caption = 'RPM:'
+  end
+  object LbAPU_RPM: TLabel
+    Left = 232
+    Top = 416
+    Width = 32
+    Height = 13
+    Caption = '####'
+  end
+  object LbAPU_Master: TLabel
+    Left = 224
+    Top = 400
+    Width = 16
+    Height = 13
+    Caption = '##'
+  end
+  object LbAPU_Start: TLabel
+    Left = 256
+    Top = 400
+    Width = 16
+    Height = 13
+    Caption = '##'
+  end
+  object Label27: TLabel
+    Left = 8
+    Top = 416
+    Width = 68
+    Height = 13
+    Caption = 'Gross Weight:'
+  end
+  object LbGrossWeight: TLabel
     Left = 80
     Top = 416
     Width = 64
@@ -567,12 +616,13 @@ object FrmMain: TFrmMain
   end
   object BoxEngines: TPanel
     Left = 0
-    Top = 452
+    Top = 466
     Width = 552
     Height = 192
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
+    ExplicitTop = 452
   end
   object BoxBrakes: TPanel
     Left = 328

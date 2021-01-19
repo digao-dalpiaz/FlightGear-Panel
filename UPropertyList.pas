@@ -71,6 +71,11 @@ type
   //Path: /controls
   TPL_Controls = class(TPropertyListGroup)
   public
+    [Chunk('APU/master')]
+    APU_Master: TFloatValue;
+    [Chunk('APU/off-start-run')]
+    APU_Off_Start_Run: TFloatValue;
+
     [Chunk('engines/engine', 4)]
     Engines: TObjectList<TPL_EngineControls>;
 
@@ -248,6 +253,9 @@ type
 
     //'systems/...'?
 
+    [Chunk('systems/apu/rpm')]
+    APU_RPM: TFloatValue;
+
     [Chunk('velocities/airspeed-kt')]
     AirSpeed_Kt: TFloatValue;
     [Chunk('velocities/groundspeed-kt')]
@@ -256,6 +264,9 @@ type
     Mach: TFloatValue;
     [Chunk('velocities/vertical-speed-fps')]
     VerticalSpeed: TFloatValue;
+
+    [Chunk('yasim/gross-weight-lbs')]
+    Gross_Weight_Lbs: TFloatValue;
 
     constructor Create;
     destructor Destroy; override;
