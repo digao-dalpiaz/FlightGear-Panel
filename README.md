@@ -21,7 +21,7 @@ With this in mind, I developed this application that communicates via the socket
 
 ## How to use
 
-1. Use XMLGen app and generate XML file specifying the FlightGear installation directory.
+1. Use XMLGen app to generate PropertyList XML file specifying the FlightGear installation directory.
 
 2. Run FGPanel app (an UDP Server socket will automatically start).
    *If you are going to use this app on another remote computer, remember to allow access through the firewall.*
