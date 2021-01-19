@@ -2,6 +2,7 @@
 FlightGear real time flight controls/instruments/parameters and descent ramp graph
 
 ![Preview](Images/panel_preview.png)
+*On final approach, landing a Boeing 747-8*
 
 ## Description
 
