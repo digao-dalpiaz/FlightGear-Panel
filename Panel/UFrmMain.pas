@@ -69,6 +69,10 @@ type
     Label20: TLabel;
     LbSpeedBrake_Output: TLabel;
     Label23: TLabel;
+    Label19: TLabel;
+    LbMaxLanding: TLabel;
+    Label21: TLabel;
+    LbMaxTakeoff: TLabel;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread; const AData: TIdBytes;
       ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
@@ -243,6 +247,8 @@ procedure TFrmMain.UpdatePanel(L: TPropertyList);
 var
   I: Integer;
   FrameEngine: TFrameEngine;
+  Level: TLevel;
+  Tank: TPL_Tank;
 begin
   SetLabelFloat(LbAirSpeed, L.AirSpeed_Kt, vtDecimal, True, ' kts');
   SetLabelFloat(LbGroundSpeed, L.GroundSpeed_Kt, vtDecimal, True, ' kts');
@@ -273,18 +279,23 @@ begin
 
   for I := 0 to LevelsTanks.Count-1 do
   begin
-    LevelsTanks[I].Visible := not L.Tanks[I].Hidden;
-    LevelsTanks[I].Description := L.Tanks[I].Name;
-    LevelsTanks[I].Value := L.Tanks[I].Level_Norm;
+    Level := LevelsTanks[I];
+    Tank := L.Tanks[I];
+
+    Level.Visible := not Tank.Hidden;
+    Level.SetValue(Tank.Level_Norm, Tank.Name+': '+FormatFloat('#,##0', Tank.Level_Lbs));
   end;
 
-  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Kg, vtInteger, True, ' kg');
+  SetLabelFloat(LbTotalFuel, L.Total_Fuel_Lbs, vtInteger, True, ' lbs');
 
-  LevelSpoilerL.Value := L.Controls.Spoiler_L_Sum;
-  LevelSpoilerR.Value := L.Controls.Spoiler_R_Sum;
+  SetLabelFloat(LbMaxTakeoff, L.Maximum_Takeoff_Mass_Lbs, vtInteger, True, ' lbs');
+  SetLabelFloat(LbMaxLanding, L.Maximum_Landing_Mass_Lbs, vtInteger, True, ' lbs');
 
-  LevelBrakeL.Value := L.Controls.Brake_Left;
-  LevelBrakeR.Value := L.Controls.Brake_Right;
+  LevelSpoilerL.SetValue(L.Controls.Spoiler_L_Sum);
+  LevelSpoilerR.SetValue(L.Controls.Spoiler_R_Sum);
+
+  LevelBrakeL.SetValue(L.Controls.Brake_Left);
+  LevelBrakeR.SetValue(L.Controls.Brake_Right);
 
   if L.Controls.Brake_Parking=1 then
     LbParking.Font.Color := clLime

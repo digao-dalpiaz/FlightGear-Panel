@@ -47,8 +47,8 @@ type
   public
     [Chunk('hidden')]
     Hidden: Boolean;
-    [Chunk('level-kg')]
-    Level_Kg: TFloatValue;
+    //[Chunk('level-kg')]
+    //Level_Kg: TFloatValue;
     [Chunk('level-lbs')]
     Level_Lbs: TFloatValue;
     [Chunk('level-norm')]
@@ -175,8 +175,8 @@ type
 
     [Chunk('consumables/fuel/tank', 5)]
     Tanks: TObjectList<TPL_Tank>;
-    [Chunk('consumables/fuel/total-fuel-kg')]
-    Total_Fuel_Kg: TFloatValue;
+    //[Chunk('consumables/fuel/total-fuel-kg')]
+    //Total_Fuel_Kg: TFloatValue;
     [Chunk('consumables/fuel/total-fuel-lbs')]
     Total_Fuel_Lbs: TFloatValue;
     [Chunk('consumables/fuel/total-fuel-norm')]

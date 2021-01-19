@@ -39,6 +39,20 @@ object FrmMain: TFrmMain
     Height = 9
     Shape = bsTopLine
   end
+  object Label2: TLabel
+    Left = 16
+    Top = 104
+    Width = 83
+    Height = 13
+    Caption = 'Properties count:'
+  end
+  object LbPropCount: TLabel
+    Left = 104
+    Top = 104
+    Width = 12
+    Height = 13
+    Caption = '---'
+  end
   object BtnExecute: TButton
     Left = 184
     Top = 136

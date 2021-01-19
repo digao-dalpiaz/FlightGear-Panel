@@ -47,8 +47,8 @@ end;
 
 procedure TLevelCmdXReal.UpdateValue(Cmd, Real: Extended);
 begin
-  ShCmd.Value := Cmd;
-  ShReal.Value := Real;
+  ShCmd.SetValue(Cmd);
+  ShReal.SetValue(Real);
 end;
 
 end.

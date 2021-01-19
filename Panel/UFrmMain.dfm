@@ -4,7 +4,7 @@ object FrmMain: TFrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'FlightGear Panel'
-  ClientHeight = 620
+  ClientHeight = 644
   ClientWidth = 552
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -89,17 +89,17 @@ object FrmMain: TFrmMain
   end
   object Label3: TLabel
     Left = 8
-    Top = 408
+    Top = 400
     Width = 51
     Height = 13
     Caption = 'Total Fuel:'
   end
   object LbTotalFuel: TLabel
-    Left = 64
-    Top = 408
-    Width = 32
+    Left = 80
+    Top = 400
+    Width = 64
     Height = 13
-    Caption = '####'
+    Caption = '########'
   end
   object Label7: TLabel
     Left = 448
@@ -442,22 +442,22 @@ object FrmMain: TFrmMain
     Caption = '#'
   end
   object Label16: TLabel
-    Left = 144
-    Top = 408
+    Left = 232
+    Top = 432
     Width = 75
     Height = 13
     Caption = 'Closest Airport:'
   end
   object LbClosestAirport: TLabel
-    Left = 224
-    Top = 408
-    Width = 79
+    Left = 312
+    Top = 432
+    Width = 24
     Height = 13
-    Caption = 'LbClosestAirport'
+    Caption = 'ZZZZ'
   end
   object LbGroundSpoilersArmed: TLabel
-    Left = 328
-    Top = 408
+    Left = 408
+    Top = 432
     Width = 109
     Height = 13
     Caption = 'Ground Spoilers Armed'
@@ -496,6 +496,34 @@ object FrmMain: TFrmMain
     Width = 29
     Height = 13
     Caption = 'Norm:'
+  end
+  object Label19: TLabel
+    Left = 8
+    Top = 432
+    Width = 64
+    Height = 13
+    Caption = 'Max Landing:'
+  end
+  object LbMaxLanding: TLabel
+    Left = 80
+    Top = 432
+    Width = 64
+    Height = 13
+    Caption = '########'
+  end
+  object Label21: TLabel
+    Left = 8
+    Top = 416
+    Width = 64
+    Height = 13
+    Caption = 'Max Takeoff:'
+  end
+  object LbMaxTakeoff: TLabel
+    Left = 80
+    Top = 416
+    Width = 64
+    Height = 13
+    Caption = '########'
   end
   object BoxFlaps: TPanel
     Left = 8
@@ -539,19 +567,18 @@ object FrmMain: TFrmMain
   end
   object BoxEngines: TPanel
     Left = 0
-    Top = 440
+    Top = 452
     Width = 552
-    Height = 180
+    Height = 192
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 4
-    ExplicitWidth = 553
   end
   object BoxBrakes: TPanel
     Left = 328
     Top = 296
     Width = 113
-    Height = 105
+    Height = 97
     BevelOuter = bvNone
     Color = 2368548
     ParentBackground = False
@@ -561,7 +588,7 @@ object FrmMain: TFrmMain
     Left = 208
     Top = 296
     Width = 113
-    Height = 105
+    Height = 97
     BevelOuter = bvNone
     Color = 2368548
     ParentBackground = False
@@ -581,7 +608,7 @@ object FrmMain: TFrmMain
     Left = 8
     Top = 296
     Width = 193
-    Height = 105
+    Height = 97
     BevelOuter = bvNone
     Color = 2368548
     ParentBackground = False

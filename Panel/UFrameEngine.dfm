@@ -2,16 +2,17 @@ object FrameEngine: TFrameEngine
   Left = 0
   Top = 0
   Width = 138
-  Height = 183
+  Height = 194
   TabOrder = 0
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 138
-    Height = 183
+    Height = 194
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitHeight = 183
     object LbTitle: TLabel
       Left = 0
       Top = 0
@@ -34,38 +35,68 @@ object FrameEngine: TFrameEngine
     end
     object LbCranking: TLabel
       Left = 8
-      Top = 160
-      Width = 42
-      Height = 13
-      Caption = 'Cranking'
+      Top = 168
+      Width = 41
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'Crank.'
+      Color = 4227327
+      ParentColor = False
+      Transparent = False
+      Layout = tlCenter
     end
     object LbIgnition: TLabel
-      Left = 56
-      Top = 160
-      Width = 36
-      Height = 13
+      Left = 48
+      Top = 168
+      Width = 41
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
       Caption = 'Ignition'
+      Color = 4227327
+      ParentColor = False
+      Transparent = False
+      Layout = tlCenter
     end
     object LbRunning: TLabel
       Left = 8
       Top = 144
-      Width = 39
-      Height = 13
+      Width = 49
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
       Caption = 'Running'
+      Color = 959818
+      ParentColor = False
+      Transparent = False
+      Layout = tlCenter
     end
     object LbStarter: TLabel
-      Left = 96
-      Top = 160
-      Width = 34
-      Height = 13
+      Left = 88
+      Top = 168
+      Width = 41
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
       Caption = 'Starter'
+      Color = 4227327
+      ParentColor = False
+      Transparent = False
+      Layout = tlCenter
     end
     object LbCutOff: TLabel
-      Left = 96
+      Left = 80
       Top = 144
-      Width = 33
-      Height = 13
+      Width = 49
+      Height = 17
+      Alignment = taCenter
+      AutoSize = False
       Caption = 'CutOff'
+      Color = 136
+      ParentColor = False
+      Transparent = False
+      Layout = tlCenter
     end
     object Label1: TLabel
       Left = 8
@@ -78,10 +109,11 @@ object FrameEngine: TFrameEngine
       Left = 137
       Top = 13
       Width = 1
-      Height = 170
+      Height = 181
       Align = alRight
       Pen.Color = clGray
       ExplicitLeft = 129
+      ExplicitHeight = 170
     end
     object BoxRev: TPanel
       Left = 8

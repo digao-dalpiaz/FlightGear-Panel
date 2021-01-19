@@ -14,10 +14,14 @@ type
     EdDir: TEdit;
     BtnSelDir: TSpeedButton;
     Bevel1: TBevel;
+    Label2: TLabel;
+    LbPropCount: TLabel;
     procedure BtnExecuteClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnSelDirClick(Sender: TObject);
   private
+    PropCount: Integer;
+
     procedure GetFlightGearInstalltionDir;
     procedure GenerateFile(const aFile: string);
     procedure GenerateGroup(C: TPropertyListGroupClass; const GroupPath: string; S: TStringList);
@@ -94,7 +98,9 @@ begin
 
   //
 
+  PropCount := 0;
   GenerateFile(TPath.Combine(DestDir, 'digao_panel.xml'));
+  LbPropCount.Caption := PropCount.ToString;
 
   MessageDlg('FlightGear PropertyList XML successfully generated!', mtInformation, [mbOK], 0);
 end;
@@ -179,6 +185,7 @@ begin
         S.Add('    <type>'+aType+'</type>');
         S.Add('    <format>'+aFormat+'</format>');
         S.Add('  </chunk>');
+        Inc(PropCount);
       end;
     except
       on E: Exception do

@@ -7,21 +7,17 @@ uses Vcl.Controls, Vcl.Graphics, System.Classes;
 type
   TLevel = class(TGraphicControl)
   private
-    FDescription: string;
     FValue: Extended;
+    FInfo: string;
 
     BarColor: TColor;
     Vertical: Boolean;
-
-    procedure SetValue(const Value: Extended);
-    procedure SetDescription(const Value: string);
   protected
     procedure Paint; override;
   public
     constructor Create(AOwner: TComponent; BarColor: TColor; Vertical: Boolean); reintroduce;
 
-    property Description: string read FDescription write SetDescription;
-    property Value: Extended read FValue write SetValue;
+    procedure SetValue(Value: Extended; const Info: string = '');
   published
     property ParentFont;
     property ParentColor;
@@ -47,8 +43,10 @@ var
 begin
   inherited;
 
-  Text := FormatFloat('0.00', FValue);
-  if not FDescription.IsEmpty then Text := FDescription+': '+Text;
+  if FInfo.IsEmpty then
+    Text := FormatFloat('0.00', FValue)
+  else
+    Text := FInfo;
 
   Size := Canvas.TextExtent(Text);
 
@@ -67,20 +65,13 @@ begin
     Canvas.TextOut(8, (Height-Size.Height) div 2, Text);
 end;
 
-procedure TLevel.SetDescription(const Value: string);
+procedure TLevel.SetValue(Value: Extended; const Info: string);
 begin
-  if FDescription<>Value then
-  begin
-    FDescription := Value;
-    Invalidate;
-  end;
-end;
-
-procedure TLevel.SetValue(const Value: Extended);
-begin
-  if FValue<>Value then
+  if (FValue<>Value) or (FInfo<>Info) then
   begin
     FValue := Value;
+    FInfo := Info;
+
     Invalidate;
   end;
 end;
