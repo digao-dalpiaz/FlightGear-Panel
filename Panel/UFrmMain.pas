@@ -2,12 +2,12 @@ unit UFrmMain;
 
 interface
 
-uses FMX.Forms, IdUDPServer, IdGlobal, IdSocketHandle, System.Classes,
-  IdBaseComponent, IdComponent, IdUDPBase,
+uses FMX.Forms, IdUDPServer, IdGlobal, IdSocketHandle, FMX.Types,
+  IdBaseComponent, IdComponent, IdUDPBase, FMX.Objects, System.Classes,
+  FMX.Controls, FMX.Controls.Presentation, FMX.StdCtrls,
   //
   UPropertyList, ULevel, ULevelCmdXReal, UDescentRamp, UFrameEngine,
-  System.Generics.Collections, FMX.Types, FMX.Controls,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects;
+  System.Generics.Collections, System.Diagnostics;
 
 type
   TFrmMain = class(TForm)
@@ -80,11 +80,17 @@ type
     BoxSpoilersSide: TRectangle;
     BoxBrakes: TRectangle;
     BoxEngines: TRectangle;
+    Label32: TLabel;
+    LbStatus: TLabel;
+    TimerCon: TTimer;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure TimerConTimer(Sender: TObject);
   private
+    LastInfoCtrl: TStopwatch;
+
     FramesEngines: TList<TFrameEngine>;
     LevelsTanks: TList<TLevel>;
 
@@ -207,12 +213,13 @@ var
   I: Integer;
   Level: TLevel;
   Y: Single;
+  P: TPanel;
 begin
   Y := 0;
 
   for I := 1 to 5 do
   begin
-    Level := TLevel.Create(Self, TAlphaColors.Saddlebrown);
+    Level := TLevel.Create(Self, TAlphaColors.Purple);
     Level.Parent := BoxTanks;
     Level.Height := 18;
     Level.Position.Y := Y;
@@ -220,7 +227,16 @@ begin
 
     LevelsTanks.Add(Level);
 
-    Y := Level.Position.Y+Level.Height;
+    Y := Level.BoundsRect.Bottom;
+
+    P := TPanel.Create(Self);
+    P.Parent := BoxTanks;
+    P.Height := 1;
+    P.Position.Y := Y;
+    P.Align := TAlignLayout.Top;
+    P.Opacity := 0;
+
+    Y := P.BoundsRect.Bottom;
   end;
 end;
 
@@ -231,6 +247,8 @@ var
   P: TDataProcess;
 begin
   if Application.Terminated then Exit;
+
+  LastInfoCtrl := TStopwatch.StartNew;
 
   L := TPropertyList.Create;
   try
@@ -244,6 +262,19 @@ begin
     UpdatePanel(L);
   finally
     L.Free;
+  end;
+end;
+
+procedure TFrmMain.TimerConTimer(Sender: TObject);
+begin
+  if LastInfoCtrl.IsRunning and (LastInfoCtrl.ElapsedMilliseconds<1000) then
+  begin
+    LbStatus.Text := 'UP';
+    LbStatus.FontColor := TAlphaColors.Lime;
+  end else
+  begin
+    LbStatus.Text := 'DOWN';
+    LbStatus.FontColor := TAlphaColors.Red;
   end;
 end;
 
