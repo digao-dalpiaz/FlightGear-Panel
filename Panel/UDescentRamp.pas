@@ -2,14 +2,14 @@ unit UDescentRamp;
 
 interface
 
-uses Vcl.Controls, System.Types, UPropertyList;
+uses FMX.Controls, System.Types, UPropertyList;
 
 type
-  TDescentRamp = class(TGraphicControl)
+  TDescentRamp = class(TControl)
   private
     RunwayAltFt, RunwayDistNm, AirplaneAltFt: Extended;
 
-    function GetPos(AltFt, DistNm: Extended): TPoint;
+    function GetPos(AltFt, DistNm: Extended): TPointF;
   protected
     procedure Paint; override;
   public
@@ -18,7 +18,7 @@ type
 
 implementation
 
-uses Vcl.Graphics;
+uses System.UITypes, FMX.Graphics;
 
 const
   WIDTH_NM = 15;
@@ -28,9 +28,9 @@ const
   IDEAL_START_DIST_NM = 12;
 
 
-function TDescentRamp.GetPos(AltFt, DistNm: Extended): TPoint;
+function TDescentRamp.GetPos(AltFt, DistNm: Extended): TPointF;
 begin
-  Result := TPoint.Create(
+  Result := TPointF.Create(
     Width - Round(Width * DistNm / WIDTH_NM),
     Height - Round(Height * AltFt / HEIGHT_FT)
   );
@@ -38,7 +38,7 @@ end;
 
 procedure TDescentRamp.Paint;
 var
-  StartPos, PlanePos: TPoint;
+  StartPos, PlanePos: TPointF;
 begin
   inherited;
   if (RunwayDistNm = 0) or (RunwayDistNm > WIDTH_NM) then Exit;
@@ -46,13 +46,13 @@ begin
   StartPos := GetPos(IDEAL_START_ALT_FT, IDEAL_START_DIST_NM);
   PlanePos := GetPos(AirplaneAltFt - RunwayAltFt, RunwayDistNm);
 
-  Canvas.Pen.Color := clGreen;
-  Canvas.MoveTo(StartPos.X, StartPos.Y);
-  Canvas.LineTo(Width, Height);
+  Canvas.Stroke.Kind := TBrushKind.Solid;
 
-  Canvas.Pen.Color := clRed;
-  Canvas.MoveTo(PlanePos.X, PlanePos.Y);
-  Canvas.LineTo(Width, Height);
+  Canvas.Stroke.Color := TAlphaColors.Green;
+  Canvas.DrawLine(StartPos, LocalRect.BottomRight, 1);
+
+  Canvas.Stroke.Color := TAlphaColors.Red;
+  Canvas.DrawLine(PlanePos, LocalRect.BottomRight, 1);
 end;
 
 procedure TDescentRamp.UpdateData(L: TPropertyList);
@@ -61,7 +61,7 @@ begin
   RunwayDistNm := L.RouteManager.Distance_Remaining_Nm;
   AirplaneAltFt := L.Altitude_Ft;
 
-  Invalidate;
+  InvalidateRect(LocalRect);
 end;
 
 end.

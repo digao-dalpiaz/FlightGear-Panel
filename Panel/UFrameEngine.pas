@@ -2,24 +2,25 @@ unit UFrameEngine;
 
 interface
 
-uses Vcl.Forms, Vcl.ExtCtrls, Vcl.Controls, Vcl.StdCtrls, System.Classes,
+uses FMX.Forms, FMX.Controls, FMX.Controls.Presentation, FMX.StdCtrls,
+  System.Classes, FMX.Types, FMX.Objects,
   //
   UPropertyList, ULevelCmdXReal;
 
 type
   TFrameEngine = class(TFrame)
-    Panel1: TPanel;
+    BoxTitle: TRectangle;
     LbTitle: TLabel;
-    Label5: TLabel;
-    BoxRev: TPanel;
+    BoxThrottle: TRectangle;
+    BoxReverser: TRectangle;
+    Label2: TLabel;
+    Label3: TLabel;
+    LbCutoff: TLabel;
     LbCranking: TLabel;
     LbIgnition: TLabel;
     LbRunning: TLabel;
     LbStarter: TLabel;
-    LbCutOff: TLabel;
-    Label1: TLabel;
-    BoxThrottle: TPanel;
-    Shape1: TShape;
+    BoxFrame: TRectangle;
   private
     EngineIndex: Integer;
 
@@ -31,7 +32,8 @@ type
 
 implementation
 
-{$R *.dfm}
+{$R *.fmx}
+
 
 uses System.SysUtils, System.Math;
 
@@ -40,10 +42,10 @@ begin
   inherited Create(AOwner);
   Self.EngineIndex := EngineIndex-1;
 
-  LbTitle.Caption := 'ENGINE '+EngineIndex.ToString;
+  LbTitle.Text := 'ENGINE '+EngineIndex.ToString;
 
-  CreateLevel(LevelThrottle, BoxThrottle);
-  CreateLevel(LevelReverser, BoxRev);
+  LevelThrottle := TLevelCmdXReal.CreateByBox(BoxThrottle);
+  LevelReverser := TLevelCmdXReal.CreateByBox(BoxReverser);
 end;
 
 procedure TFrameEngine.UpdateByEngineIndex(L: TPropertyList);
@@ -54,10 +56,10 @@ begin
   Eng := L.Engines[EngineIndex];
   Ctrl := L.Controls.Engines[EngineIndex];
 
-  LevelThrottle.UpdateValue(Ctrl.Throttle, Eng.N1 / 100);
-  LevelReverser.UpdateValue(IfThen(Ctrl.Reverser, 1, 0), Eng.Reverser_Pos_Norm);
+  LevelThrottle.SetValues(Ctrl.Throttle, Eng.N1 / 100);
+  LevelReverser.SetValues(IfThen(Ctrl.Reverser, 1, 0), Eng.Reverser_Pos_Norm);
 
-  LbCutOff.Visible := Eng.Cutoff or Ctrl.Cutoff;
+  LbCutoff.Visible := Eng.Cutoff or Ctrl.Cutoff;
   LbCranking.Visible := Eng.Cranking;
   LbIgnition.Visible := Eng.Ignition;
   LbRunning.Visible := Eng.Running;

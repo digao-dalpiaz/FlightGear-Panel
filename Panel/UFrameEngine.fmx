@@ -1,0 +1,134 @@
+object FrameEngine: TFrameEngine
+  Size.Width = 146.000000000000000000
+  Size.Height = 192.000000000000000000
+  Size.PlatformDefault = False
+  object BoxFrame: TRectangle
+    Align = Client
+    Fill.Color = claBlack
+    Size.Width = 146.000000000000000000
+    Size.Height = 192.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claGray
+    object BoxReverser: TRectangle
+      Fill.Color = xFF1F1F1F
+      Position.X = 8.000000000000000000
+      Position.Y = 104.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object BoxThrottle: TRectangle
+      Fill.Color = xFF1F1F1F
+      Position.X = 8.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Label2: TLabel
+      StyledSettings = [Family, Size, Style]
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claAquamarine
+      Text = 'THROTTLE'
+      TabOrder = 2
+    end
+    object Label3: TLabel
+      StyledSettings = [Family, Size, Style]
+      Position.X = 8.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claAquamarine
+      Text = 'REVERSER'
+      TabOrder = 3
+    end
+    object LbCranking: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 8.000000000000000000
+      Position.Y = 166.000000000000000000
+      Size.Width = 41.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 10.000000000000000000
+      TextSettings.FontColor = claSandybrown
+      TextSettings.HorzAlign = Center
+      Text = '[Crank.]'
+      TabOrder = 4
+    end
+    object LbCutoff: TLabel
+      StyledSettings = [Family, Size, Style]
+      Position.X = 80.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claTomato
+      TextSettings.HorzAlign = Trailing
+      Text = 'Cutoff'
+      TabOrder = 5
+    end
+    object LbIgnition: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 52.000000000000000000
+      Position.Y = 166.000000000000000000
+      Size.Width = 41.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 10.000000000000000000
+      TextSettings.FontColor = claSandybrown
+      TextSettings.HorzAlign = Center
+      Text = '[Ignition]'
+      TabOrder = 6
+    end
+    object LbRunning: TLabel
+      StyledSettings = [Family, Size, Style]
+      Position.X = 8.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claPalegreen
+      Text = 'Running'
+      TabOrder = 7
+    end
+    object LbStarter: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 96.000000000000000000
+      Position.Y = 166.000000000000000000
+      Size.Width = 41.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 10.000000000000000000
+      TextSettings.FontColor = claSandybrown
+      TextSettings.HorzAlign = Center
+      Text = '[Starter]'
+      TabOrder = 8
+    end
+    object BoxTitle: TRectangle
+      Align = Top
+      Fill.Color = claSteelblue
+      Size.Width = 146.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object LbTitle: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 146.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = 'ENGINE #'
+        TabOrder = 0
+      end
+    end
+  end
+end

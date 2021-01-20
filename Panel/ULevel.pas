@@ -2,67 +2,80 @@ unit ULevel;
 
 interface
 
-uses Vcl.Controls, Vcl.Graphics, System.Classes;
+uses FMX.Controls, System.Classes, System.UITypes;
 
 type
-  TLevel = class(TGraphicControl)
+  TLevel = class(TControl)
   private
+    FColor: TAlphaColor;
+    FVertical: Boolean;
+
     FValue: Extended;
     FInfo: string;
-
-    BarColor: TColor;
-    Vertical: Boolean;
   protected
     procedure Paint; override;
   public
-    constructor Create(AOwner: TComponent; BarColor: TColor; Vertical: Boolean); reintroduce;
-
     procedure SetValue(Value: Extended; const Info: string = '');
-  published
-    property ParentFont;
-    property ParentColor;
-    property Color;
+    constructor Create(AOwner: TComponent; Color: TAlphaColor; Vertical: Boolean = False); reintroduce;
   end;
 
 implementation
 
-uses System.SysUtils, System.Types;
+uses System.Types, FMX.Graphics, FMX.Types, System.SysUtils,
+  System.Math;
 
-constructor TLevel.Create(AOwner: TComponent; BarColor: TColor;
-  Vertical: Boolean);
+constructor TLevel.Create(AOwner: TComponent; Color: TAlphaColor; Vertical: Boolean);
 begin
   inherited Create(AOwner);
-  Self.BarColor := BarColor;
-  Self.Vertical := Vertical;
+
+  FColor := Color;
+  FVertical := Vertical;
 end;
 
 procedure TLevel.Paint;
 var
+  R: TRectF;
   Text: string;
-  Size: TSize;
+  Factor: Extended;
+  P: TPointF;
+  VA, HA: TTextAlign;
 begin
   inherited;
 
-  if FInfo.IsEmpty then
-    Text := FormatFloat('0.00', FValue)
-  else
-    Text := FInfo;
+  if FValue>0 then
+  begin
+    Factor := Min(FValue, 1);
 
-  Size := Canvas.TextExtent(Text);
+    if FVertical then
+      P := TPointF.Create(Width, Height * Factor)
+    else
+      P := TPointF.Create(Width * Factor, Height);
 
-  Canvas.Pen.Style := psClear;
-  Canvas.Brush.Color := BarColor;
-  if Vertical then
-    Canvas.Rectangle(1, 1, Width, Round(Height*FValue))
-  else
-    Canvas.Rectangle(1, 1, Round(Width*FValue), Height);
+    Canvas.Fill.Color := FColor;
+    Canvas.FillRect(TRectF.Create(TPointF.Zero, P),
+      3, 3, [TCorner.TopLeft, TCorner.TopRight, TCorner.BottomLeft, TCorner.BottomRight], 1);
+  end;
 
-  Canvas.Brush.Style := bsClear;
-  Canvas.Font.Color := clWhite; //**
-  if Vertical then
-    Canvas.TextOut((Width-Size.Width) div 2, 8, Text)
+  R := LocalRect;
+  if FVertical then
+  begin
+    R.Top := R.Top+8;
+    VA := TTextAlign.Leading;
+    HA := TTextAlign.Center;
+  end else
+  begin
+    R.Left := R.Left+8;
+    VA := TTextAlign.Center;
+    HA := TTextAlign.Leading;
+  end;
+
+  if not FInfo.IsEmpty then
+    Text := FInfo
   else
-    Canvas.TextOut(8, (Height-Size.Height) div 2, Text);
+    Text := FormatFloat('0.00', FValue);
+
+  Canvas.Fill.Color := TAlphaColors.White;
+  Canvas.FillText(R, Text, False, 1, [], HA, VA);
 end;
 
 procedure TLevel.SetValue(Value: Extended; const Info: string);
@@ -72,7 +85,7 @@ begin
     FValue := Value;
     FInfo := Info;
 
-    Invalidate;
+    InvalidateRect(LocalRect);
   end;
 end;
 

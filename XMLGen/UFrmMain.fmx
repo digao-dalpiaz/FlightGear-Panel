@@ -1,0 +1,79 @@
+object FrmMain: TFrmMain
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = Single
+  Caption = 'FlightGear PropertyList XML Generator'
+  ClientHeight = 205
+  ClientWidth = 474
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object BtnGenerate: TButton
+    Position.X = 176.000000000000000000
+    Position.Y = 160.000000000000000000
+    Size.Width = 121.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Generate File'
+    OnClick = BtnGenerateClick
+  end
+  object GroupBox1: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 457.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Generator'
+    TabOrder = 1
+    object LbDir: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 225.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'FlightGear installtion directory'
+      TabOrder = 0
+    end
+    object EdDir: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 401.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label2: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 112.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Properties count:'
+      TabOrder = 2
+    end
+    object LbCount: TLabel
+      Position.X = 120.000000000000000000
+      Position.Y = 112.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = '---'
+      TabOrder = 3
+    end
+    object BtnSelDir: TSpeedButton
+      Position.X = 416.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 25.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'ellipseseditbutton'
+      OnClick = BtnSelDirClick
+    end
+  end
+end

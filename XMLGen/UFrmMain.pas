@@ -2,22 +2,22 @@ unit UFrmMain;
 
 interface
 
-uses Vcl.Forms, System.Classes, Vcl.Controls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls,
+uses FMX.Forms, FMX.StdCtrls, FMX.Edit, System.Classes, FMX.Types, FMX.Controls,
+  FMX.Controls.Presentation,
   //
   UPropertyList;
 
 type
   TFrmMain = class(TForm)
-    BtnExecute: TButton;
-    Label1: TLabel;
+    BtnGenerate: TButton;
+    GroupBox1: TGroupBox;
+    LbDir: TLabel;
     EdDir: TEdit;
-    BtnSelDir: TSpeedButton;
-    Bevel1: TBevel;
     Label2: TLabel;
-    LbPropCount: TLabel;
-    procedure BtnExecuteClick(Sender: TObject);
+    LbCount: TLabel;
+    BtnSelDir: TSpeedButton;
     procedure FormCreate(Sender: TObject);
+    procedure BtnGenerateClick(Sender: TObject);
     procedure BtnSelDirClick(Sender: TObject);
   private
     PropCount: Integer;
@@ -32,12 +32,13 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.fmx}
 
-uses System.RTTI,
-  System.SysUtils, Vcl.Dialogs,
-  System.UITypes, System.IOUtils, Vcl.FileCtrl,
-  System.Win.Registry, Winapi.Windows;
+uses FMX.DialogService, System.IOUtils, FMX.Dialogs,
+  System.Rtti
+{$IFDEF MSWINDOWS}
+  , System.Win.Registry, System.SysUtils, Winapi.Windows
+{$ENDIF};
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
@@ -47,9 +48,12 @@ begin
 end;
 
 procedure TFrmMain.GetFlightGearInstalltionDir;
+{$IFDEF MSWINDOWS}
 var
   R: TRegistry;
+{$ENDIF}
 begin
+{$IFDEF MSWINDOWS}
   R := TRegistry.Create;
   try
     if TOSVersion.Architecture = arIntelX64 then R.Access := KEY_WOW64_64KEY;
@@ -59,31 +63,31 @@ begin
   finally
     R.Free;
   end;
+{$ENDIF}
 end;
 
 procedure TFrmMain.BtnSelDirClick(Sender: TObject);
 var
   Dir: string;
 begin
-  Dir := EdDir.Text;
-  if SelectDirectory('FlightGear installation directory:', string.Empty, Dir) then
+  if SelectDirectory(LbDir.Text, EdDir.Text, Dir) then
     EdDir.Text := Dir;
 end;
 
-procedure TFrmMain.BtnExecuteClick(Sender: TObject);
+procedure TFrmMain.BtnGenerateClick(Sender: TObject);
 var
   DestDir: string;
 begin
   if EdDir.Text = string.Empty then
   begin
-    MessageDlg('Please, specify the installation directory.', mtError, [mbOK], 0);
+    TDialogService.ShowMessage('Please, specify the installation directory.');
     EdDir.SetFocus;
     Exit;
   end;
 
   if not TDirectory.Exists(EdDir.Text) then
   begin
-    MessageDlg('Invalid installation directory.', mtError, [mbOK], 0);
+    TDialogService.ShowMessage('Invalid installation directory.');
     EdDir.SetFocus;
     Exit;
   end;
@@ -91,7 +95,7 @@ begin
   DestDir := TPath.Combine(EdDir.Text, 'data\Protocol');
   if not TDirectory.Exists(DestDir) then
   begin
-    MessageDlg('The specified installation directory does not contains required structure.', mtError, [mbOK], 0);
+    TDialogService.ShowMessage('The specified installation directory does not contains required structure.');
     EdDir.SetFocus;
     Exit;
   end;
@@ -100,9 +104,9 @@ begin
 
   PropCount := 0;
   GenerateFile(TPath.Combine(DestDir, 'digao_panel.xml'));
-  LbPropCount.Caption := PropCount.ToString;
+  LbCount.Text := PropCount.ToString;
 
-  MessageDlg('FlightGear PropertyList XML successfully generated!', mtInformation, [mbOK], 0);
+  TDialogService.ShowMessage('FlightGear PropertyList XML successfully generated!');
 end;
 
 procedure TFrmMain.GenerateFile(const aFile: string);

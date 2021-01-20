@@ -2,50 +2,53 @@ unit ULevelCmdXReal;
 
 interface
 
-uses Vcl.Controls, Vcl.ExtCtrls, System.Classes,
-  ULevel;
+uses FMX.Controls, System.Classes, ULevel, FMX.Objects;
 
 type
-  TLevelCmdXReal = class(TWinControl)
+  TLevelCmdXReal = class(TControl)
   private
     ShCmd, ShReal: TLevel;
   protected
     procedure Resize; override;
   public
+    class function CreateByBox(Panel: TRectangle): TLevelCmdXReal;
     constructor Create(AOwner: TComponent); override;
-    procedure UpdateValue(Cmd, Real: Extended);
-  end;
 
-procedure CreateLevel(var Level: TLevelCmdXReal; Panel: TPanel);
+    procedure SetValues(Cmd, Real: Extended);
+  end;
 
 implementation
 
-procedure CreateLevel(var Level: TLevelCmdXReal; Panel: TPanel);
+uses System.UITypes, FMX.Types;
+
+class function TLevelCmdXReal.CreateByBox(Panel: TRectangle): TLevelCmdXReal;
 begin
-  Level := TLevelCmdXReal.Create(Panel.Owner);
-  Level.Parent := Panel;
-  Level.Align := alClient;
+  Result := TLevelCmdXReal.Create(Panel.Owner);
+  Result.Parent := Panel;
+  Result.Align := TAlignLayout.Client;
 end;
 
 constructor TLevelCmdXReal.Create(AOwner: TComponent);
 begin
   inherited;
-  ShCmd := TLevel.Create(Self, $000080FF, False);
-  ShCmd.Parent := Self;
-  ShCmd.Align := alTop;
 
-  ShReal := TLevel.Create(Self, $00804000, False);
+  ShCmd := TLevel.Create(Self, TAlphaColors.Orangered);
+  ShCmd.Parent := Self;
+  ShCmd.Align := TAlignLayout.Top;
+
+  ShReal := TLevel.Create(Self, TAlphaColors.Darkblue);
   ShReal.Parent := Self;
-  ShReal.Align := alClient;
+  ShReal.Align := TAlignLayout.Client;
 end;
 
 procedure TLevelCmdXReal.Resize;
 begin
   inherited;
-  ShCmd.Height := Round(Height * 0.4);
+
+  ShCmd.Height := Height * 0.4;
 end;
 
-procedure TLevelCmdXReal.UpdateValue(Cmd, Real: Extended);
+procedure TLevelCmdXReal.SetValues(Cmd, Real: Extended);
 begin
   ShCmd.SetValue(Cmd);
   ShReal.SetValue(Real);

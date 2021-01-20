@@ -1,7 +1,8 @@
 program XMLGen;
 
 uses
-  Vcl.Forms,
+  System.StartUpCopy,
+  FMX.Forms,
   UFrmMain in 'UFrmMain.pas' {FrmMain},
   UPropertyList in '..\UPropertyList.pas';
 
@@ -9,7 +10,6 @@ uses
 
 begin
   Application.Initialize;
-  Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmMain, FrmMain);
   Application.Run;
 end.
