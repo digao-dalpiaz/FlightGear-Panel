@@ -1,7 +1,9 @@
 # FlightGear-Panel
 FlightGear real time flight controls/instruments/parameters and descent ramp graph
 
-![Preview](Images/panel_preview.png)
+On final approach               | On runway
+:------------------------------:|:------------------------------:
+ ![](Images/panel_preview1.png) | ![](Images/panel_preview2.png)
 
 *On final approach, landing a Boeing 747-8*
 
