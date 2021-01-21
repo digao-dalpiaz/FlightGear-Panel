@@ -22,7 +22,7 @@ object FrmMain: TFrmMain
     Text = 'Generate File'
     OnClick = BtnGenerateClick
   end
-  object GroupBox1: TGroupBox
+  object BoxGenerator: TGroupBox
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 457.000000000000000000
@@ -48,7 +48,7 @@ object FrmMain: TFrmMain
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
     end
-    object Label2: TLabel
+    object LbLbCount: TLabel
       Position.X = 16.000000000000000000
       Position.Y = 112.000000000000000000
       Size.Width = 105.000000000000000000

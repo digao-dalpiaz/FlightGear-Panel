@@ -10,10 +10,10 @@ uses FMX.Forms, FMX.StdCtrls, FMX.Edit, System.Classes, FMX.Types, FMX.Controls,
 type
   TFrmMain = class(TForm)
     BtnGenerate: TButton;
-    GroupBox1: TGroupBox;
+    BoxGenerator: TGroupBox;
     LbDir: TLabel;
     EdDir: TEdit;
-    Label2: TLabel;
+    LbLbCount: TLabel;
     LbCount: TLabel;
     BtnSelDir: TSpeedButton;
     procedure FormCreate(Sender: TObject);

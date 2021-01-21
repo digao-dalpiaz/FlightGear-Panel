@@ -805,11 +805,16 @@ object FrmMain: TFrmMain
   end
   object LbStatus: TLabel
     StyledSettings = [Family, Size, Style]
-    Position.X = 56.000000000000000000
+    Position.X = 48.000000000000000000
     Position.Y = 184.000000000000000000
     TextSettings.FontColor = claDeeppink
     Text = '##########'
     TabOrder = 64
+  end
+  object TimerCon: TTimer
+    OnTimer = TimerConTimer
+    Left = 480
+    Top = 112
   end
   object Server: TIdUDPServer
     Active = True
@@ -822,10 +827,5 @@ object FrmMain: TFrmMain
     OnUDPRead = ServerUDPRead
     Left = 384
     Top = 120
-  end
-  object TimerCon: TTimer
-    OnTimer = TimerConTimer
-    Left = 480
-    Top = 112
   end
 end
