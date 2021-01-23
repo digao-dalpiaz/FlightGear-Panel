@@ -83,6 +83,12 @@ type
     Label32: TLabel;
     LbStatus: TLabel;
     TimerCon: TTimer;
+    Label33: TLabel;
+    LbAT_Arm: TLabel;
+    LbAT_Input: TLabel;
+    LbAT_Output: TLabel;
+    Label34: TLabel;
+    LbVersion: TLabel;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
@@ -138,6 +144,8 @@ end;
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
   ReportMemoryLeaksOnShutdown := True;
+
+  LbVersion.Text := '1.0/'+STR_PROPERTYLIST_VERSION_CTRL;
 
   Fill.Color := TAlphaColors.Black;
 
@@ -359,6 +367,10 @@ begin
   SetLabelFloat(LbAPU_Master, L.Controls.APU_Master, 0, True);
   SetLabelFloat(LbAPU_Start, L.Controls.APU_Off_Start_Run, 0, True);
   SetLabelFloat(LbAPU_RPM, L.APU_RPM, 2, True);
+
+  SetLabelFloat(LbAT_Arm, L.Athr_Armed, 0, True);
+  SetLabelFloat(LbAT_Input, L.Athr_Input, 0, True);
+  SetLabelFloat(LbAT_Output, L.Athr_Output, 0, True);
 end;
 
 end.

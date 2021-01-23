@@ -4,6 +4,8 @@ interface
 
 uses System.Rtti, System.Generics.Collections;
 
+const STR_PROPERTYLIST_VERSION_CTRL = '001';
+
 type
   ChunkAttribute = class(TCustomAttribute)
   private
@@ -208,6 +210,13 @@ type
 
     //'instrumentation/...'?
     //'it-autoflight/...'?
+
+    [Chunk('it-autoflight/custom/athr-armed')]
+    Athr_Armed: TFloatValue;
+    [Chunk('it-autoflight/input/athr')]
+    Athr_Input: TFloatValue;
+    [Chunk('it-autoflight/output/athr')]
+    Athr_Output: TFloatValue;
 
     [Chunk('limits/mass-and-balance/maximum-landing-mass-lbs')]
     Maximum_Landing_Mass_Lbs: TFloatValue;

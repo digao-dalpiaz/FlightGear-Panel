@@ -25,7 +25,7 @@ object FrmMain: TFrmMain
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     TextSettings.FontColor = claWhite
     Text = '######'
-    TabOrder = 31
+    TabOrder = 35
   end
   object Label1: TLabel
     StyledSettings = [Family]
@@ -39,7 +39,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Air Speed'
-    TabOrder = 34
+    TabOrder = 38
   end
   object Label2: TLabel
     StyledSettings = [Family]
@@ -53,7 +53,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Ground Speed'
-    TabOrder = 33
+    TabOrder = 37
   end
   object LbGroundSpeed: TLabel
     StyledSettings = [Family]
@@ -67,7 +67,7 @@ object FrmMain: TFrmMain
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     TextSettings.FontColor = claWhite
     Text = '######'
-    TabOrder = 22
+    TabOrder = 24
   end
   object Label4: TLabel
     StyledSettings = [Family]
@@ -81,7 +81,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Mach'
-    TabOrder = 23
+    TabOrder = 25
   end
   object LbMach: TLabel
     StyledSettings = [Family]
@@ -95,7 +95,7 @@ object FrmMain: TFrmMain
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     TextSettings.FontColor = claWhite
     Text = '######'
-    TabOrder = 15
+    TabOrder = 16
   end
   object Label6: TLabel
     StyledSettings = [Family]
@@ -109,7 +109,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Vert. Speed'
-    TabOrder = 16
+    TabOrder = 17
   end
   object LbVertSpeed: TLabel
     StyledSettings = [Family]
@@ -190,7 +190,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Speed'
-    TabOrder = 39
+    TabOrder = 43
   end
   object LbSpeed: TLabel
     StyledSettings = [Family, Size, Style]
@@ -201,7 +201,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '###'
-    TabOrder = 40
+    TabOrder = 44
   end
   object Label5: TLabel
     StyledSettings = [Family, Size, Style]
@@ -213,7 +213,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'View'
-    TabOrder = 43
+    TabOrder = 47
   end
   object LbView: TLabel
     StyledSettings = [Family, Size, Style]
@@ -224,7 +224,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claPeachpuff
     Text = '#############'
-    TabOrder = 44
+    TabOrder = 48
   end
   object Label7: TLabel
     StyledSettings = [Family, Size, Style]
@@ -236,7 +236,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Airport Elev.'
-    TabOrder = 35
+    TabOrder = 39
   end
   object LbDestElev: TLabel
     StyledSettings = [Family, Size, Style]
@@ -247,7 +247,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '#####'
-    TabOrder = 36
+    TabOrder = 40
   end
   object Label11: TLabel
     StyledSettings = [Family, Size, Style]
@@ -259,7 +259,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Airport Dist.'
-    TabOrder = 37
+    TabOrder = 41
   end
   object LbDestDist: TLabel
     StyledSettings = [Family, Size, Style]
@@ -270,7 +270,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '#####'
-    TabOrder = 38
+    TabOrder = 42
   end
   object Label9: TLabel
     StyledSettings = [Family, Size, Style]
@@ -281,7 +281,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'Destination'
-    TabOrder = 41
+    TabOrder = 45
   end
   object LbDestination: TLabel
     StyledSettings = [Family, Size, Style]
@@ -292,7 +292,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claGold
     Text = '##########################################'
-    TabOrder = 42
+    TabOrder = 46
   end
   object LbTotalFuel: TLabel
     StyledSettings = [Family, Size, Style]
@@ -303,7 +303,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '############'
-    TabOrder = 27
+    TabOrder = 30
   end
   object Label13: TLabel
     StyledSettings = [Family, Size, Style]
@@ -315,7 +315,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Total Fuel'
-    TabOrder = 32
+    TabOrder = 36
   end
   object Label14: TLabel
     StyledSettings = [Family, Size, Style]
@@ -327,7 +327,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Gross Weight'
-    TabOrder = 28
+    TabOrder = 31
   end
   object LbGrossWeight: TLabel
     StyledSettings = [Family, Size, Style]
@@ -338,7 +338,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '############'
-    TabOrder = 20
+    TabOrder = 22
   end
   object Label16: TLabel
     StyledSettings = [Family, Size, Style]
@@ -350,7 +350,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Max Takeoff'
-    TabOrder = 21
+    TabOrder = 23
   end
   object LbMaxTakeoff: TLabel
     StyledSettings = [Family, Size, Style]
@@ -362,7 +362,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '############'
-    TabOrder = 13
+    TabOrder = 14
   end
   object Label18: TLabel
     StyledSettings = [Family, Size, Style]
@@ -374,7 +374,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Max Landing'
-    TabOrder = 14
+    TabOrder = 15
   end
   object LbMaxLanding: TLabel
     StyledSettings = [Family, Size, Style]
@@ -400,51 +400,51 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Center
     Text = '[Parking]'
-    TabOrder = 45
+    TabOrder = 49
   end
   object LbAutoBrake1: TLabel
     StyledSettings = [Family, Size, Style]
     Position.X = 496.000000000000000000
-    Position.Y = 432.000000000000000000
+    Position.Y = 424.000000000000000000
     Size.Width = 33.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '##'
-    TabOrder = 24
+    TabOrder = 27
   end
   object Label15: TLabel
     StyledSettings = [Family, Size, Style]
-    Position.X = 424.000000000000000000
-    Position.Y = 432.000000000000000000
+    Position.X = 416.000000000000000000
+    Position.Y = 424.000000000000000000
     Size.Width = 73.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'Auto Brake'
-    TabOrder = 29
+    TabOrder = 33
   end
   object LbAutoBrake2: TLabel
     StyledSettings = [Family, Size, Style]
     Position.X = 528.000000000000000000
-    Position.Y = 432.000000000000000000
+    Position.Y = 424.000000000000000000
     Size.Width = 33.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '##'
-    TabOrder = 17
+    TabOrder = 19
   end
   object LbAutoBrake3: TLabel
     StyledSettings = [Family, Size, Style]
     Position.X = 560.000000000000000000
-    Position.Y = 432.000000000000000000
+    Position.Y = 424.000000000000000000
     Size.Width = 33.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '##'
-    TabOrder = 10
+    TabOrder = 11
   end
   object LbSpeedBrake_Arm: TLabel
     StyledSettings = [Family, Size, Style]
@@ -455,7 +455,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '###'
-    TabOrder = 25
+    TabOrder = 28
   end
   object Label17: TLabel
     StyledSettings = [Family, Size, Style]
@@ -466,7 +466,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'Speed Brake'
-    TabOrder = 30
+    TabOrder = 34
   end
   object Label19: TLabel
     StyledSettings = [Family, Size, Style]
@@ -478,7 +478,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Arm'
-    TabOrder = 26
+    TabOrder = 29
   end
   object LbSpeedBrake_Lever: TLabel
     StyledSettings = [Family, Size, Style]
@@ -489,7 +489,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '###'
-    TabOrder = 18
+    TabOrder = 20
   end
   object Label21: TLabel
     StyledSettings = [Family, Size, Style]
@@ -501,7 +501,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Lever'
-    TabOrder = 19
+    TabOrder = 21
   end
   object LbSpeedBrake_Norm: TLabel
     StyledSettings = [Family, Size, Style]
@@ -512,7 +512,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '###'
-    TabOrder = 11
+    TabOrder = 12
   end
   object Label23: TLabel
     StyledSettings = [Family, Size, Style]
@@ -524,7 +524,7 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Norm'
-    TabOrder = 12
+    TabOrder = 13
   end
   object LbSpeedBrake_Output: TLabel
     StyledSettings = [Family, Size, Style]
@@ -547,18 +547,18 @@ object FrmMain: TFrmMain
     TextSettings.FontColor = claWhite
     TextSettings.HorzAlign = Trailing
     Text = 'Output'
-    TabOrder = 46
+    TabOrder = 50
   end
   object LbGroundSpoilersArmed: TLabel
     StyledSettings = [Family, Size, Style]
-    Position.X = 424.000000000000000000
-    Position.Y = 456.000000000000000000
-    Size.Width = 169.000000000000000000
+    Position.X = 416.000000000000000000
+    Position.Y = 472.000000000000000000
+    Size.Width = 177.000000000000000000
     Size.Height = 16.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '[Ground Spoilers Armed]'
-    TabOrder = 47
+    TabOrder = 51
   end
   object Label12: TLabel
     StyledSettings = [Family, Size, Style]
@@ -569,7 +569,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'Closest Airport'
-    TabOrder = 48
+    TabOrder = 52
   end
   object LbClosestAirport: TLabel
     StyledSettings = [Family, Size, Style]
@@ -580,7 +580,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claKhaki
     Text = '####'
-    TabOrder = 49
+    TabOrder = 53
   end
   object Label20: TLabel
     StyledSettings = [Family, Size, Style]
@@ -591,7 +591,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'APU'
-    TabOrder = 50
+    TabOrder = 54
   end
   object LbAPU_Master: TLabel
     StyledSettings = [Family, Size, Style]
@@ -602,7 +602,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '##'
-    TabOrder = 51
+    TabOrder = 55
   end
   object LbAPU_Start: TLabel
     StyledSettings = [Family, Size, Style]
@@ -613,7 +613,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '##'
-    TabOrder = 52
+    TabOrder = 56
   end
   object Label22: TLabel
     StyledSettings = [Family, Size, Style]
@@ -624,7 +624,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'RPM'
-    TabOrder = 53
+    TabOrder = 57
   end
   object LbAPU_RPM: TLabel
     StyledSettings = [Family, Size, Style]
@@ -635,7 +635,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = '###'
-    TabOrder = 54
+    TabOrder = 58
   end
   object Label24: TLabel
     StyledSettings = [Family, Size, Style]
@@ -646,7 +646,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'FLAPS'
-    TabOrder = 55
+    TabOrder = 59
   end
   object Label26: TLabel
     StyledSettings = [Family, Size, Style]
@@ -657,7 +657,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'SPEED BRAKE'
-    TabOrder = 56
+    TabOrder = 60
   end
   object Label27: TLabel
     StyledSettings = [Family, Size, Style]
@@ -668,7 +668,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'SPOILERS'
-    TabOrder = 57
+    TabOrder = 61
   end
   object Label28: TLabel
     StyledSettings = [Family, Size, Style]
@@ -679,7 +679,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'GEAR'
-    TabOrder = 58
+    TabOrder = 62
   end
   object Label29: TLabel
     StyledSettings = [Family, Size, Style]
@@ -687,7 +687,7 @@ object FrmMain: TFrmMain
     Position.Y = 304.000000000000000000
     TextSettings.FontColor = claAquamarine
     Text = 'TANKS'
-    TabOrder = 59
+    TabOrder = 63
   end
   object Label30: TLabel
     StyledSettings = [Family, Size, Style]
@@ -698,7 +698,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'SPOILERS SIDE'
-    TabOrder = 60
+    TabOrder = 64
   end
   object Label31: TLabel
     StyledSettings = [Family, Size, Style]
@@ -709,7 +709,7 @@ object FrmMain: TFrmMain
     Size.PlatformDefault = False
     TextSettings.FontColor = claAquamarine
     Text = 'BRAKES'
-    TabOrder = 61
+    TabOrder = 65
   end
   object BoxDescentRamp: TRectangle
     Fill.Color = xFF1F1F1F
@@ -796,12 +796,12 @@ object FrmMain: TFrmMain
     StyledSettings = [Family, Size, Style]
     Position.X = 8.000000000000000000
     Position.Y = 184.000000000000000000
-    Size.Width = 49.000000000000000000
+    Size.Width = 41.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claWhite
     Text = 'Status'
-    TabOrder = 63
+    TabOrder = 69
   end
   object LbStatus: TLabel
     StyledSettings = [Family, Size, Style]
@@ -809,12 +809,78 @@ object FrmMain: TFrmMain
     Position.Y = 184.000000000000000000
     TextSettings.FontColor = claDeeppink
     Text = '##########'
-    TabOrder = 64
+    TabOrder = 70
   end
   object TimerCon: TTimer
     OnTimer = TimerConTimer
     Left = 480
     Top = 112
+  end
+  object Label33: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 416.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = 'Auto Throttle'
+    TabOrder = 32
+  end
+  object LbAT_Arm: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 496.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = '##'
+    TabOrder = 26
+  end
+  object LbAT_Input: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 528.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = '##'
+    TabOrder = 18
+  end
+  object LbAT_Output: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 560.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 33.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = '##'
+    TabOrder = 10
+  end
+  object Label34: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 8.000000000000000000
+    Position.Y = 208.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = 'Version'
+    TabOrder = 68
+  end
+  object LbVersion: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 56.000000000000000000
+    Position.Y = 208.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claWhite
+    Text = '###'
+    TabOrder = 67
   end
   object Server: TIdUDPServer
     Active = True

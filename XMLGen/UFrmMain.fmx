@@ -75,5 +75,17 @@ object FrmMain: TFrmMain
       StyleLookup = 'ellipseseditbutton'
       OnClick = BtnSelDirClick
     end
+    object Label1: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 80.000000000000000000
+      Text = 'PropertyList version:'
+      TabOrder = 4
+    end
+    object LbPropertyListVersion: TLabel
+      Position.X = 136.000000000000000000
+      Position.Y = 80.000000000000000000
+      Text = 'LbPropertyListVersion'
+      TabOrder = 5
+    end
   end
 end

@@ -16,6 +16,8 @@ type
     LbLbCount: TLabel;
     LbCount: TLabel;
     BtnSelDir: TSpeedButton;
+    Label1: TLabel;
+    LbPropertyListVersion: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure BtnGenerateClick(Sender: TObject);
     procedure BtnSelDirClick(Sender: TObject);
@@ -43,6 +45,8 @@ uses FMX.DialogService, System.IOUtils, FMX.Dialogs,
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
   ReportMemoryLeaksOnShutdown := True;
+
+  LbPropertyListVersion.Text := STR_PROPERTYLIST_VERSION_CTRL;
 
   GetFlightGearInstalltionDir;
 end;
