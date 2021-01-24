@@ -38,3 +38,9 @@ With this in mind, I developed this application that communicates using UDP sock
 > Replace "localhost" by the remote computer address if you are using remote app.
 
 **The next time you play, you only need to open FGPanel and FlightGear.**
+
+## Descent Ramp
+
+To show the descent ramp, just configure the destination in the Route Manager.
+
+![Route Manager](Images/route_manager.png)
