@@ -1,0 +1,181 @@
+object FrmConfig: TFrmConfig
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'Configuration'
+  ClientHeight = 242
+  ClientWidth = 425
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object BtnOK: TButton
+    Position.X = 120.000000000000000000
+    Position.Y = 200.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'OK'
+    OnClick = BtnOKClick
+  end
+  object BtnCancel: TButton
+    ModalResult = 2
+    Position.X = 216.000000000000000000
+    Position.Y = 200.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Cancel'
+  end
+  object GroupBox1: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 409.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Ideal Descent Ramp'
+    TabOrder = 0
+    object Label1: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 27.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Distance'
+      TabOrder = 0
+    end
+    object Label2: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 51.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Altitude'
+      TabOrder = 3
+    end
+    object EdDR_RefDist: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Cursor = crIBeam
+      Max = 99999.000000000000000000
+      ValueType = Float
+      Position.X = 80.000000000000000000
+      Position.Y = 24.000000000000000000
+      HorzIncrement = 0.000000000000000000
+      VertIncrement = 0.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object EdDR_RefAlt: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Cursor = crIBeam
+      Max = 99999.000000000000000000
+      ValueType = Float
+      Position.X = 80.000000000000000000
+      Position.Y = 48.000000000000000000
+      HorzIncrement = 0.000000000000000000
+      VertIncrement = 0.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label5: TLabel
+      Position.X = 168.000000000000000000
+      Position.Y = 27.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'nm'
+      TabOrder = 2
+    end
+    object Label6: TLabel
+      Position.X = 168.000000000000000000
+      Position.Y = 51.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ft'
+      TabOrder = 5
+    end
+  end
+  object GroupBox2: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 409.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Descent Ramp Graph Area'
+    TabOrder = 1
+    object Label3: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 27.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Distance'
+      TabOrder = 0
+    end
+    object EdDR_AreaDist: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Cursor = crIBeam
+      Max = 99999.000000000000000000
+      ValueType = Float
+      Position.X = 80.000000000000000000
+      Position.Y = 24.000000000000000000
+      HorzIncrement = 0.000000000000000000
+      VertIncrement = 0.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label4: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 51.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Altitude'
+      TabOrder = 3
+    end
+    object EdDR_AreaAlt: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Cursor = crIBeam
+      Max = 99999.000000000000000000
+      ValueType = Float
+      Position.X = 80.000000000000000000
+      Position.Y = 48.000000000000000000
+      HorzIncrement = 0.000000000000000000
+      VertIncrement = 0.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label7: TLabel
+      Position.X = 168.000000000000000000
+      Position.Y = 27.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'nm'
+      TabOrder = 2
+    end
+    object Label8: TLabel
+      Position.X = 168.000000000000000000
+      Position.Y = 51.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ft'
+      TabOrder = 5
+    end
+  end
+end

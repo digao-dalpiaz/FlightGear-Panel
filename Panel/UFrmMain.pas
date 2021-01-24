@@ -7,7 +7,7 @@ uses FMX.Forms, IdUDPServer, IdGlobal, IdSocketHandle, FMX.Types,
   FMX.Controls, FMX.Controls.Presentation, FMX.StdCtrls,
   //
   UPropertyList, ULevel, ULevelCmdXReal, UDescentRamp, UFrameEngine,
-  System.Generics.Collections, System.Diagnostics;
+  System.Generics.Collections, System.Diagnostics, System.ImageList, FMX.ImgList;
 
 type
   TFrmMain = class(TForm)
@@ -89,11 +89,14 @@ type
     LbAT_Output: TLabel;
     Label34: TLabel;
     LbVersion: TLabel;
+    BtnConfig: TSpeedButton;
+    IL: TImageList;
     procedure ServerUDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TimerConTimer(Sender: TObject);
+    procedure BtnConfigClick(Sender: TObject);
   private
     LastInfoCtrl: TStopwatch;
 
@@ -117,7 +120,8 @@ implementation
 
 {$R *.fmx}
 
-uses UDataProcess, System.SysUtils, System.Math, System.UITypes;
+uses System.SysUtils, System.Math, System.UITypes, FMX.DialogService,
+  UDataProcess, UConfig, UFrmConfig;
 
 procedure SetLabelFloat(Lb: TLabel; Value: Extended;
   DecimalPoints: Byte; OKContidion: Boolean; const Sufix: string = '');
@@ -143,34 +147,52 @@ end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
-  ReportMemoryLeaksOnShutdown := True;
+  try
+    ReportMemoryLeaksOnShutdown := True;
 
-  LbVersion.Text := '1.0/'+STR_PROPERTYLIST_VERSION_CTRL;
+    LbVersion.Text := '1.0/'+STR_PROPERTYLIST_VERSION_CTRL;
 
-  Fill.Color := TAlphaColors.Black;
+    Fill.Color := TAlphaColors.Black;
 
-  DescentRamp := TDescentRamp.Create(Self);
-  DescentRamp.Parent := BoxDescentRamp;
-  DescentRamp.Align := TAlignLayout.Client;
+    Config := TConfig.Create;
+    Config.Load;
 
-  LevelFlaps := TLevelCmdXReal.CreateByBox(BoxFlaps);
-  LevelSpoilers := TLevelCmdXReal.CreateByBox(BoxSpoilers);
-  LevelSpeedBrake := TLevelCmdXReal.CreateByBox(BoxSpeedBrake);
-  LevelGear := TLevelCmdXReal.CreateByBox(BoxGear);
+    DescentRamp := TDescentRamp.Create(Self);
+    DescentRamp.Parent := BoxDescentRamp;
+    DescentRamp.Align := TAlignLayout.Client;
 
-  CreateVerticalLevels;
+    LevelFlaps := TLevelCmdXReal.CreateByBox(BoxFlaps);
+    LevelSpoilers := TLevelCmdXReal.CreateByBox(BoxSpoilers);
+    LevelSpeedBrake := TLevelCmdXReal.CreateByBox(BoxSpeedBrake);
+    LevelGear := TLevelCmdXReal.CreateByBox(BoxGear);
 
-  FramesEngines := TList<TFrameEngine>.Create;
-  CreateEngines;
+    CreateVerticalLevels;
 
-  LevelsTanks := TList<TLevel>.Create;
-  CreateTanks;
+    FramesEngines := TList<TFrameEngine>.Create;
+    CreateEngines;
+
+    LevelsTanks := TList<TLevel>.Create;
+    CreateTanks;
+  except
+    on E: Exception do
+    begin
+      TDialogService.ShowMessage('ERROR: '+E.Message);
+      Application.Terminate;
+    end;
+  end;
 end;
 
 procedure TFrmMain.FormDestroy(Sender: TObject);
 begin
   FramesEngines.Free;
   LevelsTanks.Free;
+
+  Config.Free;
+end;
+
+procedure TFrmMain.BtnConfigClick(Sender: TObject);
+begin
+  DoConfig;
 end;
 
 procedure TFrmMain.CreateVerticalLevels;

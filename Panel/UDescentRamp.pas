@@ -19,21 +19,13 @@ type
 
 implementation
 
-uses System.UITypes, FMX.Graphics;
-
-const
-  WIDTH_NM = 15;
-  HEIGHT_FT = 6000;
-
-  IDEAL_START_ALT_FT = 4000;
-  IDEAL_START_DIST_NM = 12;
-
+uses System.UITypes, FMX.Graphics, UConfig;
 
 function TDescentRamp.GetPos(AltFt, DistNm: Extended): TPointF;
 begin
   Result := TPointF.Create(
-    Width - Round(Width * DistNm / WIDTH_NM),
-    Height - Round(Height * AltFt / HEIGHT_FT)
+    Width - Round(Width * DistNm / Config.DescentRamp_AreaDist),
+    Height - Round(Height * AltFt / Config.DescentRamp_AreaAlt)
   );
 end;
 
@@ -45,9 +37,9 @@ begin
   Canvas.Stroke.Kind := TBrushKind.Solid;
 
   PaintGrid;
-  if (RunwayDistNm = 0) or (RunwayDistNm > WIDTH_NM) then Exit;
+  if (RunwayDistNm = 0) or (RunwayDistNm > Config.DescentRamp_AreaDist) then Exit;
 
-  StartPos := GetPos(IDEAL_START_ALT_FT, IDEAL_START_DIST_NM);
+  StartPos := GetPos(Config.DescentRamp_RefAlt, Config.DescentRamp_RefDist);
   PlanePos := GetPos(AirplaneAltFt - RunwayAltFt, RunwayDistNm);
 
   Canvas.Stroke.Thickness := 1;
@@ -67,17 +59,17 @@ begin
   Canvas.Stroke.Thickness := 0.2;
 
   AltFt := 0;
-  while AltFt<HEIGHT_FT do
+  while AltFt<Config.DescentRamp_AreaAlt do
   begin
     Inc(AltFt, 1000);
-    Canvas.DrawLine(GetPos(AltFt, WIDTH_NM), GetPos(AltFt, 0), 1);
+    Canvas.DrawLine(GetPos(AltFt, Config.DescentRamp_AreaDist), GetPos(AltFt, 0), 1);
   end;
 
   DistNm := 0;
-  while DistNm<WIDTH_NM do
+  while DistNm<Config.DescentRamp_AreaDist do
   begin
     Inc(DistNm, 1);
-    Canvas.DrawLine(GetPos(HEIGHT_FT, DistNm), GetPos(0, DistNm), 1);
+    Canvas.DrawLine(GetPos(Config.DescentRamp_AreaAlt, DistNm), GetPos(0, DistNm), 1);
   end;
 end;
 

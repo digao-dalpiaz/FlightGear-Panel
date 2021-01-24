@@ -9,7 +9,9 @@ uses
   ULevelCmdXReal in 'ULevelCmdXReal.pas',
   UDataProcess in 'UDataProcess.pas',
   UDescentRamp in 'UDescentRamp.pas',
-  UFrameEngine in 'UFrameEngine.pas' {FrameEngine: TFrame};
+  UFrameEngine in 'UFrameEngine.pas' {FrameEngine: TFrame},
+  UFrmConfig in 'UFrmConfig.pas' {FrmConfig},
+  UConfig in 'UConfig.pas';
 
 {$R *.res}
 
