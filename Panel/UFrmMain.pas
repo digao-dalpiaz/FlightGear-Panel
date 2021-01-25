@@ -150,7 +150,7 @@ begin
   try
     ReportMemoryLeaksOnShutdown := True;
 
-    LbVersion.Text := '1.0/'+STR_PROPERTYLIST_VERSION_CTRL;
+    LbVersion.Text := '1.1/'+STR_PROPERTYLIST_VERSION_CTRL;
 
     Fill.Color := TAlphaColors.Black;
 
