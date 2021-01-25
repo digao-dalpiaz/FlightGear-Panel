@@ -52,3 +52,9 @@ With these situations in mind, I developed this application that communicates us
 To show the descent ramp, just configure the destination in the Route Manager.
 
 ![Route Manager](Images/route_manager.png)
+
+Two lines will be shown on the graph:
+- Green line: the ideal descent ramp.
+- Red line: the current ramp of the aircraft.
+
+> The lines will only be displayed when the aircraft is within the distance from the airport based on the graph area.
