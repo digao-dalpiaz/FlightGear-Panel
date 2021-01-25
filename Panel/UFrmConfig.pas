@@ -30,7 +30,7 @@ type
 var
   FrmConfig: TFrmConfig;
 
-procedure DoConfig;
+function DoConfig: Boolean;
 
 implementation
 
@@ -38,10 +38,10 @@ implementation
 
 uses UConfig, System.UITypes;
 
-procedure DoConfig;
+function DoConfig: Boolean;
 begin
   FrmConfig := TFrmConfig.Create(Application);
-  FrmConfig.ShowModal;
+  Result := FrmConfig.ShowModal = mrOk;
   FrmConfig.Free;
 end;
 

@@ -15,6 +15,7 @@ type
     procedure Paint; override;
   public
     procedure UpdateData(L: TPropertyList);
+    procedure Invalidate;
   end;
 
 implementation
@@ -79,6 +80,11 @@ begin
   RunwayDistNm := L.RouteManager.Distance_Remaining_Nm;
   AirplaneAltFt := L.Altitude_Ft;
 
+  Invalidate;
+end;
+
+procedure TDescentRamp.Invalidate;
+begin
   InvalidateRect(LocalRect);
 end;
 

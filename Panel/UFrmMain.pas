@@ -192,7 +192,8 @@ end;
 
 procedure TFrmMain.BtnConfigClick(Sender: TObject);
 begin
-  DoConfig;
+  if DoConfig then
+    DescentRamp.Invalidate;
 end;
 
 procedure TFrmMain.CreateVerticalLevels;
