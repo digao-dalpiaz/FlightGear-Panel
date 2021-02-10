@@ -1,6 +1,8 @@
 # FlightGear-Panel
 FlightGear real time flight controls/instruments/parameters and descent ramp graph
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C53LVFN)
+
 On final approach               | On runway
 :------------------------------:|:------------------------------:
  ![](Images/panel_preview1.png) | ![](Images/panel_preview2.png)
